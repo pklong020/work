@@ -1,0 +1,12 @@
+
+{
+  "isDemo": true,
+  "storageTotal" : "5312.47",
+  "x86TotalCpu" : "116816.00",
+  "pvmTotalCpu" : "6",
+  "x86UsedCpu" : "14946.28",
+  "memoryTotal" : "278442.42",
+  "memoryUsed" : "221604.00",
+  "storageUsed" : "4877.49",
+  "pvmUsedCpu" : "3"
+}

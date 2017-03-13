@@ -1,0 +1,53 @@
+
+  <div data-page="storage-summary" class="page whitebg">
+    <div class="page-content pull-to-refresh-content content-storage2">
+      <div class="pull-to-refresh-layer">
+        <div class="preloader"></div>
+        <div class="pull-to-refresh-arrow"></div>
+      </div>      
+      <div class="row" data-bind="with: summary">
+        <div class="col-40">
+          <div class="piece-icon volumn">
+            <span>空间总容量</span><b class="yellow" data-bind="text: storageTotal"></b><i>GB</i>
+          </div>
+          <div class="piece-icon volumnAmount">
+            <span>虚拟磁盘数</span><b class="blue" data-bind="text: vdisk"></b><i>个</i>
+          </div>
+          <div class="piece-icon hostAmount">
+            <span>连接物理机数</span><b class="green" data-bind="text: hostNum"></b><i>台</i>
+          </div>
+          <div class="piece-icon vmAmount">
+            <span>挂载虚拟机数</span><b class="orange" data-bind="text: vmNum"></b><i>台</i>
+          </div>
+        </div>
+        <div class="col-60">
+          <div class="row chart-storage-summary">
+              <div class="col-50 text-center">
+                <h3>已使用容量</h3>
+                <div data-bind="attr:{'id':'singleStorage_use_chart'+$root.belongTab()}" style="height: 180px;"></div>
+              </div>
+              <div class="col-50 text-center" data-bind="if: $root.hypervisor()=='winserver'">
+                <h3>已分配容量</h3>
+                <div data-bind="attr:{'id':'singleStorage_assigned_chart'+$root.belongTab()}" style="height: 180px;"></div>
+              </div>
+          </div>
+          <table class="listtablestyle5">
+              <tbody>
+                  <tr>
+                      <th width="30%">类型：</th>
+                      <td><span data-bind="text: type"></span></td>
+                  </tr>
+                  <tr>
+                      <th>路径：</th>
+                      <td><span data-bind="text: path"></span></td>
+                  </tr>
+                  <tr>
+                      <th>是否共享：</th>
+                      <td><span data-bind="visible: shared=='true'">是</span><span data-bind="visible: shared=='false'">否</span></td>
+                  </tr>
+              </tbody>
+          </table>          
+        </div>
+      </div>
+    </div>
+  </div>

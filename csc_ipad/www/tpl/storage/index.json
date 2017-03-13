@@ -1,0 +1,90 @@
+{
+  "total":8.95,
+  "share":3.53,
+  "local":5.42,
+  "used":4.00,
+  "free":4.95,
+  "svc":2,
+  "nfs":16,
+  "storage":7,
+  "dataList": [
+  	{
+		"id":1, 
+		"name":"xxx Storage 1", 
+		"path":"xxxx", 
+		"respoolName":"xxx", 
+		"ip":"127.0.0.1", 
+		"runningTime":1213123131,
+		"storageTotal":300,
+		"storageUsed":30,
+		"type":"NFS",
+		"vdisk":12,
+		"state":"OK"
+	},
+	{
+		"id":2, 
+		"name":"xxx Storage 2", 
+		"path":"xxxx", 
+		"respoolName":"xxx", 
+		"ip":"127.0.0.1", 
+		"runningTime":1213123131,
+		"storageTotal":300,
+		"storageUsed":30,
+		"type":"NFS",
+		"vdisk":12,
+		"state":"FAULT"
+	},
+	{
+		"id":3, 
+		"name":"xxx Storage 3", 
+		"path":"xxxx", 
+		"respoolName":"xxx", 
+		"ip":"127.0.0.1", 
+		"runningTime":1213123131,
+		"storageTotal":300,
+		"storageUsed":30,
+		"type":"NFS",
+		"vdisk":12,
+		"state":"OK"
+	},
+	{
+		"id":4, 
+		"name":"xxx Storage 4", 
+		"path":"xxxx", 
+		"respoolName":"xxx", 
+		"ip":"127.0.0.1", 
+		"runningTime":1213123131,
+		"storageTotal":300,
+		"storageUsed":30,
+		"type":"NFS",
+		"vdisk":12,
+		"state":"OK"
+	},
+	{
+		"id":5, 
+		"name":"xxx Storage 5", 
+		"path":"xxxx", 
+		"respoolName":"xxx", 
+		"ip":"127.0.0.1", 
+		"runningTime":1213123131,
+		"storageTotal":300,
+		"storageUsed":30,
+		"type":"NFS",
+		"vdisk":12,
+		"state":"OK"
+	},
+	{
+		"id":6, 
+		"name":"xxx Storage 6", 
+		"path":"xxxx", 
+		"respoolName":"xxx", 
+		"ip":"127.0.0.1", 
+		"runningTime":1213123131,
+		"storageTotal":300,
+		"storageUsed":30,
+		"type":"NFS",
+		"vdisk":12,
+		"state":"OK"
+	}
+  ]
+}

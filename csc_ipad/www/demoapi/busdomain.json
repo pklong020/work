@@ -1,0 +1,72 @@
+{
+  "busdomainNum": 6,
+  "data": [
+    {
+      "id": "1467617909859",
+      "name": "业务域1",
+      "projectNum": 2,
+      "cpuUsed": 3.0,
+      "storageTotal": 1.0,
+      "cpuTotal": 6.0,
+      "memoryTotal": 4.0,
+      "storageUsed": 0.65,
+      "memoryUsed": 2.2
+    },
+    {
+      "id": "1467617909859",
+      "name": "业务域2",
+      "projectNum": 2,
+      "cpuUsed": 1.0,
+      "storageTotal": 1.0,
+      "cpuTotal": 6.0,
+      "memoryTotal": 4.0,
+      "storageUsed": 0.95,
+      "memoryUsed": 3.8
+    },
+    {
+      "id": "1467617909859",
+      "name": "业务域3",
+      "projectNum": 2,
+      "cpuUsed": 1.0,
+      "storageTotal": 1.0,
+      "cpuTotal": 6.0,
+      "memoryTotal": 4.0,
+      "storageUsed": 0.20,
+      "memoryUsed": 1.2
+    },
+    {
+      "id": "1467617909859",
+      "name": "业务域4",
+      "projectNum": 2,
+      "cpuUsed": 3.0,
+      "storageTotal": 1.0,
+      "cpuTotal": 6.0,
+      "memoryTotal": 4.0,
+      "storageUsed": 0.65,
+      "memoryUsed": 2.2
+    },
+    {
+      "id": "1467617909859",
+      "name": "业务域5",
+      "projectNum": 2,
+      "cpuUsed": 3.0,
+      "storageTotal": 1.0,
+      "cpuTotal": 6.0,
+      "memoryTotal": 4.0,
+      "storageUsed": 0.65,
+      "memoryUsed": 2.2
+    },
+    {
+      "id": "1467617909859",
+      "name": "业务域6",
+      "projectNum": 2,
+      "cpuUsed": 3.0,
+      "storageTotal": 1.0,
+      "cpuTotal": 6.0,
+      "memoryTotal": 4.0,
+      "storageUsed": 0.65,
+      "memoryUsed": 2.2
+    }
+  ],
+  "projectNum": 43
+}

@@ -1,0 +1,65 @@
+  <div data-page="storage-list" class="page whitebg">
+    <div class="page-content pull-to-refresh-content infinite-scroll with-subnavbar content-pool2">
+      <div class="pull-to-refresh-layer">
+        <div class="preloader"></div>
+        <div class="pull-to-refresh-arrow"></div>
+      </div>
+      <div class="content-block noborder">
+        <div class="content-block-inner">
+          <table data-bind="visible: dataList().length==0">
+            <tbody>
+              <tr>
+                <td colspan="4" align="center">暂无数据</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="product-list clearfix" data-bind="foreach: dataList">
+            <a data-bind="attr: {'href':'tpl/storage/show.html?id='+id+'&name='+name+'&hypervisor='+$root.hypervisor()+'&belongTab='+$root.belongTab()}">
+              <div class="block-product block-storage">
+                  <div class="block-storage-title row">
+                    <div class="col-20">
+                      <span class="icon-storage-title"></span>
+                      <!-- ko if: type == 'NFS共享存储'-->
+                      <i class="icon-storage-share"></i>
+                      <!-- /ko -->
+                    </div>
+                    <div class="col-80 txt"><span data-bind="text: name"></span></div>
+                  </div>
+                  <table class="listtablestyle1">
+                    <tbody>
+                      <tr>
+                        <td colspan="2"><span class="storage-path-txt" data-bind="text: path"></span></td>
+                      </tr>
+                      <tr>
+                        <td colspan="2">
+                          <span class="progress-description"><span data-bind="text: availStorage"></span>GB剩余，共<span data-bind="text: storageTotal"></span>GB</span>
+                          <div class="progress progress-mini">
+                              <div class="progress-bar" data-bind="style: {'width':(storageTotal-availStorage)/storageTotal*100+'%'},css:{'progress-bar-success':(storageTotal-availStorage)/storageTotal*100<60,'warning':(storageTotal-availStorage)/storageTotal*100>60&&(storageTotal-availStorage)/storageTotal*100<=80,'danger':(storageTotal-availStorage)/storageTotal*100>80}"></div>
+                          </div>                          
+                        </td>
+                      </tr>
+                      <tr>
+                        <th><span class="block-icon host"></span>存储类型:</th>
+                        <td class="text-right"><span data-bind="text: type"></span></td>                       
+                      </tr>
+                      <tr>
+                        <th><span class="block-icon vm"></span>虚拟磁盘:</th>
+                        <td class="text-right"><span data-bind="text: vdisk"></span>个</td>                       
+                      </tr>
+                      <tr>
+                        <td colspan="2" class="status"><span class="icon-circle" data-bind="css: stateCss"></span> <span data-bind="text: state, css: stateCss"></span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+            </a>
+          </div>
+          <div class="text-center" data-bind="visible: noMore()&&dataList().length>0">所有数据加载完毕！</div>
+        </div>
+      </div>   
+      <div class="infinite-scroll-preloader">
+        <div class="preloader"></div>
+      </div>          
+    </div>
+  </div>
+

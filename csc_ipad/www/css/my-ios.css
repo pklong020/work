@@ -1,0 +1,109 @@
+/**页面底部留白**/
+.page.page-grouped{
+    padding-bottom: 0px;
+}
+/*page->page*/
+.page .page{
+    padding-bottom: 0px;
+}
+/**subnavbar和searchbar**/
+.page>.searchbar~.page-content.with-subnavbar{
+    padding-top: 132px;
+}
+.page>.searchbar.with-subnavbar{
+    top: 87px;
+}
+.toolbar-through .page-content{
+    padding-bottom: 0px!important;
+}
+/**触摸滚动问题**/
+@media (max-width: 640px) {
+    .page-content {
+        margin-bottom:1px;
+    }
+    .page {
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+/*navbar border*/
+/* .navbar{
+    border-right: 1px solid #b2b2b2;
+} */
+/**搜索框**/
+.searchbar {
+    background: #efeff4;
+    border-bottom: 0px;
+}
+.searchbar .searchbar-cancel {
+    color: #777777;
+}
+.searchbar:after{
+    height: 0px;
+}
+.layout-white .searchbar {
+    background: #efeff4;
+    border-bottom: 0px;
+}
+.layout-white .searchbar .searchbar-cancel {
+    color: #777777;
+}
+.layout-white .searchbar:after{
+    height: 0px;
+}
+/**主题颜色状态栏**/
+.layout-gray .statusbar-overlay{
+    background: #f7f7f8;
+}
+.layout-white .statusbar-overlay{
+    background: #ffffff;
+}
+.layout-dark .statusbar-overlay{
+    background: #f7f7f8;/*#131313;*/
+}
+/**page背景颜色**/
+.page.page-grouped{
+    background: #efeff4;
+}
+.page{
+    background-color: #ffffff;
+}
+.layout-gray .page.page-grouped{
+    background-color: #efeff4;
+}
+.layout-gray .page{
+    background-color: #ffffff;
+}
+.layout-white .page.page-grouped{
+    background-color: #ffffff;
+}
+.layout-white .page{
+    background-color: #ffffff;
+}
+.layout-dark .page.page-grouped{
+    background-color: #222426;
+}
+.layout-dark .page{
+    background-color: #222426;
+}
+/**ColorThemesVC**/
+.ks-layout-theme {
+    height: 44px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+.ks-layout-theme.ks-layout-default {
+    background: #efeff4;
+}
+.ks-layout-theme.ks-layout-dark {
+    background: #222426;
+}
+.ks-layout-theme.ks-layout-white {
+    background: #fff;
+}
+.ks-color-theme {
+    height: 44px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    margin-bottom: 10px;
+}

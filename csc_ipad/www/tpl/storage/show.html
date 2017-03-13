@@ -1,0 +1,26 @@
+
+<div data-page="storage-show" class="page with-subnavbar">
+  <div class="navbar">
+    <div class="navbar-inner">
+        <div class="left sliding"><a href="#" class="back link"><i class="icon icon-back"></i><span>返回</span></a></div>
+        <div class="center sliding"><span data-bind="text: name"></span></div>
+        <div class="subnavbar sliding">
+            <div class="buttons-tab">
+                <a data-bind="attr:{'href':'#view_storage_summary'+belongTab()}" class="tab-link button active">摘要</a>
+                <a data-bind="attr:{'href':'#view_storage_volumn'+belongTab()}" class="tab-link button" onclick="innerTabclick_disk('storage')">虚拟磁盘</a>
+            </div>
+            <div class="top-storage-summary"><span class="icon-summary-storage"></span><h2 data-bind="text: name"></h2></div>            
+        </div>        
+    </div>  
+  </div>
+  <div class="page-content views tabs">
+    <div data-bind="attr:{'id':'view_storage_summary'+belongTab()}" class="view tab active">
+      <div class="pages">
+      </div>
+    </div>
+    <div data-bind="attr:{'id':'view_storage_volumn'+belongTab()}" class="view tab">
+      <div class="pages">
+      </div>
+    </div>
+  </div> 
+</div>                

@@ -1,0 +1,63 @@
+{
+  "winserverNum": 3,
+  "pvmCpuTotal": 8.0,
+  "availMemory": 17850.0,
+  "storageTotal": 3789.15,
+  "X86AvailCpu": 86912.68,
+  "X86CpuTotal": 103564.0,
+  "data": [
+    {
+      "resourcePoolName": "winserver2.0资源池",
+      "resourcePoolId": 1,
+      "datacenterId": 2,
+      "datacenterName": "68域",
+      "hostNum": 2,
+      "vmNum": 40,
+      "cpu": 40000.0,
+      "memory": 65470.0,
+      "storage": 2869.42,
+      "availCpu": 27394.32,
+      "availMemory": 13753.0,
+      "availStorage": 124.28,
+      "hypervisor": "winserver",
+      "cpuSlots": 4
+    },
+    {
+      "resourcePoolName": "117资源池",
+      "resourcePoolId": 1,
+      "datacenterId": 2,
+      "datacenterName": "68域",
+      "hostNum": 1,
+      "vmNum": 16,
+      "cpu": 12372.0,
+      "memory": 16107.0,
+      "storage": 459.75,
+      "availCpu": 10001.32,
+      "availMemory": 525.0,
+      "availStorage": 4.68,
+      "hypervisor": "winserver",
+      "cpuSlots": 1
+    },
+    {
+      "resourcePoolName": "WinServer25",
+      "resourcePoolId": 1,
+      "datacenterId": 2,
+      "datacenterName": "68域",
+      "hostNum": 1,
+      "vmNum": 15,
+      "cpu": 51192.0,
+      "memory": 32758.0,
+      "storage": 459.98,
+      "availCpu": 49517.04,
+      "availMemory": 3572.0,
+      "availStorage": 33.43,
+      "hypervisor": "winserver",
+      "cpuSlots": 2
+    }
+  ],
+  "pvmAvailCpu": 2.0,
+  "availStorage": 162.39000000000001,
+  "vmwareNum": 0,
+  "memoryTotal": 114335.0,
+  "powerNum": 0
+}

@@ -1,0 +1,39 @@
+
+  <div data-page="vm-summary2" class="page whitebg">
+    <div class="page-content pull-to-refresh-content content-vm2">
+      <div class="pull-to-refresh-layer">
+        <div class="preloader"></div>
+        <div class="pull-to-refresh-arrow"></div>
+      </div> 
+      <div class="row" data-bind="with: summary">
+        <div class="col-40">
+          <div class="piece-icon cpu">
+            <span>分配VCPU</span><b class="green" data-bind="text: vcpu"></b><i>个</i>
+          </div>
+          <!-- ko if: $root.showShare -->
+          <div class="piece-icon memory">
+            <span>内存配置类型</span><i class="txt" data-bind="text: memoryType">共享</i>
+          </div>
+          <!-- /ko -->
+          <div class="piece-icon memory2">
+            <span>规格内存</span><b class="blue" data-bind="text: memory"></b><i>GB</i>
+          </div>                         
+        </div>
+        <div class="col-60">
+          <div class="vm-summary-detail">
+            <h3>操作系统</h3>
+            <table class="listtablestyle3">
+                <tbody>
+                    <tr>
+                        <th><span class="icon-os" data-bind="css: type"></span></th>
+                        <td><h3 data-bind="text: osVersion"></h3></td>
+                    </tr>
+                </tbody>
+            </table>   
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>

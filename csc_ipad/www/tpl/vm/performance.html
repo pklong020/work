@@ -1,0 +1,77 @@
+
+  <div data-page="vm-performance" class="page whitebg">
+    <!-- ko if: !isShowCharts() -->
+    <div class="page-content with-subnavbar content-vm2">
+      <p style="text-align:center;">暂时无法查看性能数据</p>
+    </div>
+    <!-- /ko -->
+    <!-- ko if: isShowCharts() -->
+    <div class="page-content with-subnavbar content-vm2">
+        <div class="list-block select-date">
+          <table>
+            <tbody>
+              <tr>
+                <td><span class="icon-date"></span></td>
+                <td>时间范围：</td>
+                <td>
+                  <div class="item-input">
+                    <span id="vm-times-show" data-bind="text: timeSelected"></span>
+                  </div>
+                  <div id="popover-vm-times">
+                    <div class="popover">
+                        <div class="popover-angle"></div>
+                        <div class="popover-inner">
+                            <div class="list-block">
+                                <ul>
+                                    <!-- ko foreach: {data: timeItems, as: '$row'}  -->
+                                    <li data-bind="attr:{'onclick': 'window.vm_performance_viewModel.setTimeSelected(&quot;'+$row+'&quot;)'}">
+                                      <a href="#" class="list-button item-link close-popup close-popover" data-bind="text: $row"></a>
+                                    </li>
+                                    <!-- /ko -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>   
+                  </div> 
+                </td>
+                <td>
+                    <div class="item-inner" data-bind="visible: showSelect">
+                      <div class="item-input"><input type="text" id="vmPerformanceDate"/></div>
+                    </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="content-block">
+          <!-- ko if: hypervisor() == 'winserver'-->
+          <div class="buttons-tab">
+              <a href="#tab1" class="button active tab-link">按CPU总量查看</a>
+              <a href="#tab2" class="button tab-link">按CPU线程查看</a>
+          </div>                                
+          <div class="tabs">
+              <div id="tab1" class="tab active">
+                  <div data-bind="attr:{'id':'cpuUse_chart1'+belongTab()}" style="height:200px; width:900px"></div>
+              </div>
+              <div id="tab2" class="tab">
+                  <div data-bind="attr:{'id':'cpuUse_chart2'+belongTab()}" style="height:200px; width:900px"></div>
+              </div>
+          </div>
+          <!-- /ko -->
+          <!-- ko if: hypervisor() == 'VMware'-->
+          <div data-bind="attr:{'id':'cpuUse_chart1'+belongTab()}" style="height:200px; width:900px"></div>
+          <!-- /ko -->
+        </div>
+        <div class="content-block" style="margin-top:35px">
+          <div data-bind="attr:{'id':'memoryUse_chart'+belongTab()}" style="height: 200px; width:900px"></div>
+        </div>
+        <div class="content-block" style="margin-top:35px">
+          <div data-bind="attr:{'id':'diskUse_chart'+belongTab()}" style="height: 200px; width:900px"></div>
+        </div>
+        <div class="content-block" style="margin-top:35px">
+          <div data-bind="attr:{'id':'network_chart'+belongTab()}" style="height: 200px; width:900px"></div>
+        </div>
+        
+    </div>
+    <!-- /ko -->
+  </div>

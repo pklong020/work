@@ -1,0 +1,68 @@
+{
+  "data": [
+    {
+      "id": "71",
+      "name": "（勿删）110CSC",
+      "datacenterId": 2,
+      "storage": 16.0,
+      "type": "SYSTEM",
+      "storagePoolName": "210",
+      "state": "MOUNT"
+    },
+    {
+      "id": "286",
+      "name": "123",
+      "datacenterId": 2,
+      "storage": 1.0,
+      "type": "USER",
+      "storagePoolName": "210",
+      "state": "UNMOUNT"
+    },
+    {
+      "id": "287",
+      "name": "共享联通",
+      "datacenterId": 2,
+      "storage": 1.0,
+      "type": "USER",
+      "storagePoolName": "210",
+      "state": "UNMOUNT"
+    },
+    {
+      "id": "300",
+      "name": "扩展-1G",
+      "datacenterId": 2,
+      "storage": 1.0,
+      "type": "USER",
+      "storagePoolName": "210",
+      "state": "USING"
+    },
+    {
+      "id": "396",
+      "name": "新建虚拟机",
+      "datacenterId": 2,
+      "storage": 24.0,
+      "type": "SYSTEM",
+      "storagePoolName": "210",
+      "state": "MOUNT"
+    },
+    {
+      "id": "489",
+      "name": "cc",
+      "datacenterId": 2,
+      "storage": 24.0,
+      "type": "SYSTEM",
+      "storagePoolName": "210",
+      "state": "UNMOUNT"
+    },
+    {
+      "id": "490",
+      "name": "CVM-CSC（培训-勿删）",
+      "datacenterId": 2,
+      "storage": 16.0,
+      "type": "USER",
+      "storagePoolName": "210",
+      "state": "UNMOUNT"
+    }
+  ],
+  "size": 7
+}

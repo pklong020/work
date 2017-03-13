@@ -1,0 +1,87 @@
+
+  <div data-page="host-summary" class="page whitebg">
+    <div class="page-content pull-to-refresh-content content-host2">
+      <div class="pull-to-refresh-layer">
+        <div class="preloader"></div>
+        <div class="pull-to-refresh-arrow"></div>
+      </div>     
+      <div class="row">
+        <div class="col-40" data-bind="with: summary">
+          <div class="piece-icon vm">
+            <span>虚拟机总数</span><b class="blue" data-bind="text: vmNum"></b><i>台</i>
+          </div>
+          <div class="piece-icon vm2">
+            <span>运行中虚拟机</span><b class="yellow" data-bind="text: runningVmNum"></b><i>台</i>
+          </div>
+          <div class="piece-icon virtual">
+            <span>虚拟化信息</span><i class="txt"><span data-bind="text: hypervisor"></span></i>
+          </div>
+        </div>
+        <div class="col-60">
+          <div class="host-summary-detail" data-bind="with: summary">
+            <h3>CPU</h3>
+            <table class="listtablestyle3">
+                <!-- ko if: hypervisor!='PowerVM' -->
+                <tbody>
+                    <tr>
+                        <th><span>CPU颗数：</span></th>
+                        <td><span data-bind="text: cpuSlots"></span>颗</td>
+                        <th>CPU逻辑单元：</th>
+                        <td><span data-bind="text: cpuUnit"></span>个</td>
+                    </tr>
+                    <tr>
+                        <th>CPU频率：</th>
+                        <td><span data-bind="text: cpuSpeed"></span>GHz</td>
+                        <th>供应商：</th>
+                        <td><span data-bind="text: vendor"></span></td>
+                    </tr>
+                    <tr>
+                        <th>型号：</th>
+                        <td colspan="3"><span data-bind="text: model"></span></td>
+                    </tr>
+                </tbody>
+                <!-- /ko -->
+                <!-- ko if: hypervisor=='PowerVM' -->
+                <tbody>
+                    <tr>
+                        <th><span>CPU核数：</span></th>
+                        <td><span data-bind="text: cpuUnit"></span>核</td>
+                        <th>供应商：</th>
+                        <td><span data-bind="text: vendor"></span></td>
+                    </tr>
+                    <tr>
+                        <th>型号：</th>
+                        <td colspan="3"><span data-bind="text: model"></span></td>
+                    </tr>
+                </tbody>
+                <!-- /ko -->
+            </table>            
+          </div>
+          <div class="row chart-host-summary" data-bind="with: summary2">
+              <div class="col-33 text-center">
+                <h3>CPU</h3>
+                <div data-bind="attr:{'id':'singleHost_cpu_chart'+$root.belongTab()}" style="height: 200px;width:200px;"></div>
+                <h4>总计：
+                  <!-- ko if: $root.summary().hypervisor!='PowerVM'-->
+                  <span data-bind="text: totalCpu"></span>GHz
+                  <!-- /ko -->
+                  <!-- ko if: $root.summary().hypervisor=='PowerVM'-->
+                  <span data-bind="text: totalCpu"></span>核
+                  <!-- /ko -->
+                </h4>
+              </div>
+              <div class="col-33 text-center">
+                <h3>內存</h3>
+                <div data-bind="attr:{'id':'singleHost_memory_chart'+$root.belongTab()}" style="height: 200px;width:200px;"></div>
+                <h4>总计：<span data-bind="text: memory"></span>GB</h4>
+              </div>
+              <div class="col-33 text-center">
+                <h3>存储</h3>
+                <div data-bind="attr:{'id':'singleHost_storage_chart'+$root.belongTab()}" style="height: 200px;width:200px;"></div>
+                <h4>总计：<span data-bind="text: storage"></span>TB</h4>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

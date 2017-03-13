@@ -1,0 +1,42 @@
+<div data-page="host-show" class="page with-subnavbar">
+  <div class="navbar">
+    <div class="navbar-inner">
+        <div class="left sliding"><a href="#" class="back link"><i class="icon icon-back"></i><span>返回</span></a></div>
+        <div class="center sliding"><span data-bind="text: name"></span></div>
+        <div class="right sliding"></div>
+        <div class="subnavbar sliding">
+            <div class="buttons-tab">
+                <a data-bind="attr:{'href':'#view_host_summary'+belongTab()}" class="tab-link button active">摘要</a>
+                <a data-bind="attr:{'href':'#view_host_vm'+belongTab()}" class="tab-link button" onclick="innerTabclick_vm('host')">虚拟机</a>
+                <a data-bind="attr:{'href':'#view_host_storage'+belongTab()}" class="tab-link button" onclick="innerTabclick_storage('storage')">存储池</a>
+            </div>
+            <div class="top-host-summary" data-bind="with: summary">
+              <span class="icon-summary-host"></span>
+              <h2><span data-bind="text: $root.name"></span></h2>
+              <div class="detail">
+                <span class="txt-ip">IP：<span data-bind="text: ip"></span></span>
+                <span class="txt-pool">所属资源池：<span data-bind="text: resourcePoolName"></span></span>
+                <span class="txt-status">状态：<span data-bind="visible: state=='OK'">运行中</span><span data-bind="visible: state=='RESTART'">重启</span><span data-bind="visible: state=='DISCONNECT'">未运行</span><span data-bind="visible: state=='MAINTAIN'">维护</span></span>
+                <!-- ko if: state == "OK" && $root.hypervisor() !="PowerVM"-->
+                <span class="txt-time">运行时间：<span data-bind="text: runTime"></span></span>
+                <!-- /ko -->
+              </div>
+            </div>            
+        </div>        
+    </div>
+  </div>
+  <div class="page-content views tabs">
+    <div data-bind="attr:{'id':'view_host_summary'+belongTab()}" class="view tab active">
+      <div class="pages">
+      </div>
+    </div>
+    <div data-bind="attr:{'id':'view_host_vm'+belongTab()}" class="view tab">
+      <div class="pages">
+      </div>
+    </div>
+    <div data-bind="attr:{'id':'view_host_storage'+belongTab()}" class="view tab">
+      <div class="pages">
+      </div>
+    </div> 
+  </div> 
+</div>                

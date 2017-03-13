@@ -1,0 +1,18 @@
+{
+  "id": 1,
+  "resourcePoolId": 1,
+  "resourcePoolName": "winserver2.0资源池",
+  "name": "winserver-61",
+  "ip": "192.168.206.61",
+  "vmNum": 20,
+  "runningVmNum": 9,
+  "hypervisor": "winserver",
+  "cpuSpeed": 2500.00,
+  "model": "Intel(R) Xeon(R) CPU E5-2609 v2 @ 2.50GHz",
+  "vendor": "GenuineIntel",
+  "cpuUnit": 8.00,
+  "state": "OK",
+  "runTime": 1466930000,
+  "cpuSlots": 2,
+  "datacenterId": 0
+}

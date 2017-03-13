@@ -1,0 +1,101 @@
+
+<div data-page="storage-index" class="page whitebg">
+  <div class="navbar">
+    <div class="navbar-inner">
+        <div class="center sliding"><span data-bind="text: dcName"></span>-存储池总览</div>  
+        <div class="right">
+            <a href="#" class="link icon-only open-panel" data-panel="right">筛选</a>
+        </div>          
+    </div>
+  </div>
+  <div class="page-content pull-to-refresh-content infinite-scroll content-storage">
+    <div class="pull-to-refresh-layer">
+      <div class="preloader"></div>
+      <div class="pull-to-refresh-arrow"></div>
+    </div>
+    <div class="top-storage sliding">
+      <div class="row no-gutter">
+        <div class="col-25"><span class="topbg"></span></div>
+        <div class="col-75">
+          <div class="row">
+            <div class="col-50">
+              <div id="storage_share_chart" style="height: 160px; width: 330px"></div>
+            </div>
+            <div class="col-50">
+              <div id="storage_use_chart" style="height: 160px; width: 330px"></div>
+            </div>
+          </div>
+          <div class="row" data-bind="with: infos">
+            <div class="col-20 text-right"><h2><span data-bind="text: totalSize"></span>TB</h2><span>存储总量</span></div>
+            <div class="col-20 text-right"><h2><span data-bind="text: svc"></span></h2><span>SVC(个)</span></div>
+            <div class="col-20 text-right"><h2><span data-bind="text: nfs"></span></h2><span>NFS(个)</span></div>
+            <div class="col-20 text-right"><h2><span data-bind="text: local"></span></h2><span>本地存储(个)</span></div>
+            <div class="col-5"></div>
+          </div>
+        </div>
+      </div>
+    </div>       
+    <div class="content-block noborder">
+      <div class="content-block-inner">
+        <table data-bind="visible: dataList().length==0" width="100%">
+          <tbody>
+            <tr>
+              <td colspan="4" align="center">暂无数据</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="product-list clearfix" data-bind="foreach: dataList">
+          <a data-bind="attr: {'href':'tpl/storage/show.html?id='+id+'&name='+name+'&hypervisor='+hypervisor+'&belongTab=storage'}">
+            <div class="block-product block-storage">
+                <div class="block-storage-title row">
+                  <div class="col-20">
+                    <span class="icon-storage-title"></span>
+                    <!-- ko if: type == 'NFS共享存储'-->
+                    <i class="icon-storage-share"></i>
+                    <!-- /ko -->
+                  </div>
+                  <div class="col-80 txt" data-bind="text: name"></div>
+                </div>
+                <table class="listtablestyle1">
+                  <tbody>
+                    <tr>
+                      <td colspan="2"><span class="storage-path-txt" data-bind="text: path"></span></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        <span class="progress-description"><span data-bind="text: availStorage"></span>GB剩余，共<span data-bind="text: storageTotal"></span>GB</span>
+                        <div class="progress progress-mini">
+                            <div class="progress-bar" data-bind="style: {'width':(storageTotal-availStorage)/storageTotal*100+'%'},css:{'progress-bar-success':(storageTotal-availStorage)/storageTotal*100<60,'warning':(storageTotal-availStorage)/storageTotal*100>60&&(storageTotal-availStorage)/storageTotal*100<=80,'danger':(storageTotal-availStorage)/storageTotal*100>80}"></div>
+                        </div>                          
+                      </td>
+                    </tr>
+                    <tr>
+                      <th><span class="block-icon pool"></span>所属资源池:</th>
+                      <td colspan="2" class="text-right"><span class="host-pool-txt" data-bind="text: resourcePoolName"></span></td>                  
+                    </tr>
+                    <tr>
+                      <th><span class="block-icon host"></span>存储类型:</th>
+                      <td class="text-right"><span data-bind="text: type"></span></td>                       
+                    </tr>
+                    <tr>
+                      <th><span class="block-icon vm"></span>虚拟磁盘:</th>
+                      <td class="text-right"><span data-bind="text: vdisk"></span>个</td>                       
+                    </tr>
+                    <tr>
+                      <td colspan="2" class="status"><span class="icon-circle" data-bind="css: stateCss"></span> <span data-bind="text: state, css: stateCss"></span></td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+          </a>
+        </div>
+        <div class="text-center" data-bind="visible: noMore()&&dataList().length>0">所有数据加载完毕！</div>
+      </div>
+    </div>    
+      <div class="infinite-scroll-preloader">
+        <div class="preloader"></div>
+      </div> 
+  </div>
+
+</div>
+

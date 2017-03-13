@@ -1,0 +1,39 @@
+<div data-page="indexFilter-business" class="page">
+                <div class="navbar">
+                  <div class="navbar-inner">
+                    <div class="left"></div>
+                    <div class="center sliding">筛选</div>
+                    <div class="right"></div>
+                  </div>
+                </div>            
+                <div class="page-content">
+
+                  <!-- 业务系统列表过滤-->
+                  <div class="panel-business-filter">
+                    <div class="list-block">
+                      <ul>
+                        <li>
+                            <label class="label-radio item-content">
+                              <input type="radio" name="business-radio" value="全部" data-bind="checked: busdomainSelected"/>
+                              <div class="item-inner" data-bind="click: setBusdomainSelected">
+                                <div class="item-title">全部</div>
+                              </div>
+                            </label>
+                        </li>
+                        <!-- ko foreach: {data: busdomain.list, as: '$row'}  -->
+                        <li>
+                            <label class="label-radio item-content">
+                              <input type="radio" name="business-radio" data-bind="value: $row.id,checked: $root.busdomainSelected" />
+                              <div class="item-inner" data-bind="click: $root.setBusdomainSelected">
+                                <div class="item-title" data-bind="text: $row.name"></div>
+                              </div>
+                            </label>
+                        </li>
+                        <!-- /ko -->          
+                        
+                      </ul>
+                    </div>           
+                  </div>
+
+                </div>
+              </div>

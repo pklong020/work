@@ -1,0 +1,152 @@
+
+<div data-page="vm-index" class="page whitebg">
+  <div class="navbar">
+    <div class="navbar-inner">
+        <div class="center sliding"><span data-bind="text: dcName"></span>-虚拟机总览</div>
+        <div class="right">
+            <a href="#" class="link icon-only open-panel" data-panel="right">筛选</a>
+        </div>  
+    </div>
+  </div>
+  <div class="page-content pull-to-refresh-content infinite-scroll content-vm">
+    <div class="pull-to-refresh-layer">
+      <div class="preloader"></div>
+      <div class="pull-to-refresh-arrow"></div>
+    </div>
+    <div class="top-vm sliding">
+        <div class="row no-gutter">
+          <div class="col-20"><span class="topbg"></span></div>
+          <div class="col-15 text-right"><h2><span data-bind="text: vmNum"></span></h2><span>虚拟机数</span></div>
+          <div class="col-5"></div>
+          <div class="col-30">
+            <div id="vm_os_chart" style="height: 160px; width: 280px"></div>
+          </div>
+          <div class="col-30">
+            <div id="vm_status_chart" style="height: 160px; width: 260px"></div>
+          </div>
+        </div>
+    </div>   
+      <div class="content-block noborder">
+        <div class="content-block-inner">
+          <table data-bind="visible: dataList().length==0" width="100%">
+            <tbody>
+              <tr>
+                <td colspan="4" align="center">暂无数据</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="product-list clearfix" data-bind="foreach: dataList">
+            <a data-bind="attr:{href:'tpl/vm/show.html?id='+id+'&hypervisor='+hypervisor+'&name='+name+'&state='+state+'&stateCss='+stateCss+'&type='+type+'&belongTab=vm'}">
+              <div class="block-product block-vm">
+                <div class="block-vm-title" data-bind="text: name, css: type"></div>
+                  <table class="listtablestyle1">
+                    <tbody>
+                      <tr>
+                        <td colspan="3">
+                          <span class="vm-os-txt" data-bind="text: osVersion"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th><span class="block-icon ip"></span>IP:</th>
+                        <td colspan="2" class="text-right"><span style="max-width:130px;display:block;text-overflow:ellipsis;overflow:hidden;" data-bind="text: ip"></span></td>                       
+                      </tr>
+                      <tr>
+                        <th><span class="block-icon cpu"></span>VCPU数:</th>
+                        <td>
+                          <div class="block-process green-gray">
+                            <div class="block-process green" data-bind="style: {'width':Number(vcpu)/0.32+'%'}">
+                            </div>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                          </div>                        </td>
+                        <td class="text-right"><span data-bind="text: vcpu"></span>个</td>                       
+                      </tr>
+                      <tr>
+                        <th><span class="block-icon memory"></span>内存:</th>
+                        <td>
+                          <div class="block-process orange-gray">
+                            <div class="block-process orange" data-bind="style: {'width':Number(memory)/1310.72+'%'}">
+                            </div>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                          </div>                        </td>
+                        <td class="text-right"><span data-bind="text: memory"></span>GB</td>                       
+                      </tr>
+                      <tr>
+                        <th><span class="block-icon storage"></span>存储:</th>
+                        <td>
+                          <div class="block-process yellow-gray">
+                            <div class="block-process yellow" data-bind="style: {'width':Number(storage)/327.68+'%'}">
+                            </div>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                            <span class="unit"></span>
+                          </div>
+                        </td>
+                        <td class="text-right"><span data-bind="text: storage"></span>GB</td>                       
+                      </tr>
+                      <tr>
+                        <td colspan="3" class="status"><span class="icon-circle" data-bind="css: stateCss"></span> <span data-bind="text: state, css: stateCss"></span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+            </a>
+          </div>
+          <div class="text-center" data-bind="visible: noMore()&&dataList().length>0">所有数据加载完毕！</div>
+        </div>
+      </div>    
+      <div class="infinite-scroll-preloader">
+        <div class="preloader"></div>
+      </div> 
+  </div>
+
+</div>
+

@@ -1,0 +1,52 @@
+<div data-page="indexFilter-pool" class="page">
+               <div class="navbar">
+                  <div class="navbar-inner">
+                    <div class="left"></div>
+                    <div class="center sliding">筛选</div>
+                    <div class="right"></div>
+                  </div>
+                </div>            
+               <div class="page-content">
+
+                  <!-- 资源池列表过滤-->
+                  <div class="panel-pool-filter">
+                    <div class="list-block">
+                      <ul>
+                        <li>
+                            <label class="label-radio item-content">
+                              <input type="radio" name="pool-radio" value="全部" data-bind="checked: poolSelected"/>
+                              <div class="item-inner" toselect="全部" data-bind="click: setPoolSelected">
+                                <div class="item-title">全部</div>
+                              </div>
+                            </label>
+                        </li>            
+                        <li>
+                            <label class="label-radio item-content">
+                              <input type="radio" name="pool-radio" value="winserver" data-bind="checked: poolSelected"/>
+                              <div class="item-inner" toselect="winserver" data-bind="click: setPoolSelected">
+                                <div class="item-title">WinServer</div>
+                              </div>
+                            </label>
+                        </li>            
+                        <li>
+                            <label class="label-radio item-content">
+                              <input type="radio" name="pool-radio" value="VMware" data-bind="checked: poolSelected"/>
+                              <div class="item-inner" toselect="VMware" data-bind="click: setPoolSelected">
+                                <div class="item-title">VMware</div>
+                              </div>
+                            </label>
+                        </li>            
+                        <li>
+                            <label class="label-radio item-content">
+                              <input type="radio" name="pool-radio" value="PowerVM" data-bind="checked: poolSelected"/>
+                              <div class="item-inner" toselect="PowerVM" data-bind="click: setPoolSelected">
+                                <div class="item-title">PowerVM</div>
+                              </div>
+                            </label>
+                        </li>            
+                      </ul>
+                    </div>          
+                  </div>
+
+                </div>
+              </div>

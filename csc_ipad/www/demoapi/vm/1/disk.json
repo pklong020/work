@@ -1,0 +1,29 @@
+{
+  "data": [
+    {
+      "id": "29",
+      "name": "数据盘",
+      "datacenterId": 2,
+      "storage": 16.0,
+      "type": "USER",
+      "storagePoolName": "Local storage"
+    },
+    {
+      "id": "25",
+      "name": "金融开发专用",
+      "datacenterId": 2,
+      "storage": 24.0,
+      "type": "SYSTEM",
+      "storagePoolName": "Local storage"
+    },
+    {
+      "id": "300",
+      "name": "扩展-1G",
+      "datacenterId": 2,
+      "storage": 1.0,
+      "type": "USER",
+      "storagePoolName": "210"
+    }
+  ],
+  "size": 3
+}
