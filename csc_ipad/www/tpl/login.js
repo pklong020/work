@@ -36,25 +36,15 @@ myApp.onPageInit("login", function(page) {
         Storage.setItem("userInfo",JSON.stringify(data));
         Storage.setItem("cacheTime",new Date().getTime());
 
-        myApp.closeModal('.login-screen.modal-in');
-        if(!this.dashboard){
-          this.dashboard = myApp.addView('#view-dashboard', {dynamicNavbar: false,domCache: true});
-        }
-        myApp.showAssisTime = true;
-        this.dashboard.router.load({url: "tpl/dashboard.html",animatePages: false});
-        myApp.popup('.popup-dashboard');
+        initPages()
 
         if(myApp.Login_Again){
           window.overview_viewModel.loadData();
           window.overview_viewModel.loadDatacenters();
           window.overview_viewModel.changeDc('');
-          $$('#backToDasboard').hide();
-          window.Assistive_viewModel.setHigh();
+
         }
 
-        setTimeout(function(){
-          $$("#assistive").show();
-        },2000);
       }
 
       if(this.username().toLowerCase()=="demo"&&this.password().toLowerCase()=="demo"){

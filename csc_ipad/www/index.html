@@ -85,7 +85,6 @@
             </div>
         </div>
      
-        <div class="assistive" id="assistive" data-bind="css: {'lowZindex': isLow()=='true'}" id="assistive" style="display:none;"></div>
 
         <!-- Left view-->
         <div class="view view-sidebar">
@@ -94,12 +93,8 @@
                     <div class="page-content">
                         <div class="sidebar">
                             <a href="#view-home" class="tab-link active"> <i class="icon sidebar-icon-home"></i></a>
-                            <a href="#view-business" class="tab-link" onclick="clickBusness()"> <i class="icon sidebar-icon-business"></i></a>
                             <a href="#view-pool" class="tab-link" onclick="clickPool()"> <i class="icon sidebar-icon-pool"></i></a>
-                            <a href="#view-host" class="tab-link" onclick="clickHost()"><i class="icon sidebar-icon-host"></i></a>
-                            <a href="#view-vm" class="tab-link" onclick="clickVm()"> <i class="icon sidebar-icon-vm"></i></a>
-                            <a href="#view-storage" class="tab-link" onclick="clickStorage()"> <i class="icon sidebar-icon-storage"></i></a>
-                            <a href="#view-settings" class="tab-link" onclick="clickSetting()"> <i class="icon sidebar-icon-settings"></i></a>
+                            <a href="#view-settings" class="tab-link dashboardlogout"> <i class="icon sidebar-icon-settings"></i></a>
                         </div>
                     </div>
                 </div>
@@ -113,70 +108,21 @@
                 <div id="view-home" class="view tab active">
                     <div class="pages navbar-fixed"></div>
                 </div>
-                <div id="view-business" class="view tab">
-                    <div class="pages navbar-fixed"></div>
-                </div>
                 <div id="view-pool" class="view tab">
                     <div class="pages navbar-fixed"></div>
                 </div>
+               
                 <div id="view-host" class="view tab">
                     <div class="pages navbar-fixed"></div>
                 </div>
                 <div id="view-vm" class="view tab">
                     <div class="pages navbar-fixed"></div>
                 </div>
-                <div id="view-storage" class="view tab">
-                    <div class="pages navbar-fixed"></div>
-                </div>    
-                <div id="view-settings" class="views tab">
-                    <div id="view-settings-left" class="view view-left navbar-through">
-                        <div class="pages navbar-fixed"></div>
-                    </div>
-                    <div id="view-settings-main" class="view view-right navbar-through">
-                        <div class="pages navbar-fixed">
-                            <div class="page">
-                                <div class="page-content">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>                
+               
             </div>                  
         </div>
 
-        <div class="panel panel-right panel-cover" id="indexFilter">
-
-          <div class="view view-panel-right" id="indexFilter-business" data-bind="visible: page()=='business'">
-            <div class="pages navbar-fixed">
-              
-            </div>
-          </div>
-
-          <div class="view view-panel-right" id="indexFilter-pool" data-bind="visible: page()=='pool'">
-            <div class="pages navbar-fixed">
-              
-            </div>
-          </div>
-          
-          <div class="view view-panel-right" id="indexFilter-host" data-bind="visible: page()=='host'">
-            <div class="pages navbar-fixed">
-              
-            </div>
-          </div>
-          
-          <div class="view view-panel-right" id="indexFilter-vm" data-bind="visible: page()=='vm'">
-            <div class="pages navbar-fixed">
-              
-            </div>
-          </div>
-          
-          <div class="view view-panel-right" id="indexFilter-storage" data-bind="visible: page()=='storage'">
-            <div class="pages navbar-fixed">
-              
-            </div>
-          </div>
-
-        </div>
+        
 
 
     </body>

@@ -1,5 +1,5 @@
   <div data-page="vm-list" class="page whitebg">
-    <div class="page-content pull-to-refresh-content infinite-scroll content-pool2">
+    <div class="page-content pull-to-refresh-content infinite-scroll" style="padding-top: 44px;margin-top:-44px;">
       <div class="pull-to-refresh-layer">
         <div class="preloader"></div>
         <div class="pull-to-refresh-arrow"></div>
@@ -14,7 +14,7 @@
             </tbody>
           </table>
           <div class="product-list clearfix" data-bind="foreach: dataList">
-            <a data-bind="attr:{href:'tpl/vm/show.html?id='+id+'&hypervisor='+hypervisor+'&name='+name+'&state='+state+'&stateCss='+stateCss+'&type='+type+'&belongTab='+$root.belongTab()}">
+            <!-- <a data-bind="attr:{href:'tpl/vm/show.html?id='+id+'&hypervisor='+hypervisor+'&name='+name+'&state='+state+'&stateCss='+stateCss+'&type='+type+'&belongTab='+$root.belongTab()}"> -->
               <div class="block-product block-vm" style="overflow:hidden;">
                 <div class="block-vm-title" data-bind="text: name, css: type"></div>
                   <table class="listtablestyle1">
@@ -229,7 +229,7 @@
                     
                   </table>
               </div>
-            </a>
+            <!-- </a> -->
           </div>
           <div class="text-center" data-bind="visible: noMore()&&dataList().length>0">所有数据加载完毕！</div>
         </div>

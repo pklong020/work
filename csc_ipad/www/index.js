@@ -53,41 +53,60 @@ $$(document).on('ajaxComplete', function () {
     myApp.hideIndicator();
 });
 
-myApp.showAssisTime = true;
+var view_home, view_business, view_host, view_vm;
+var is_reload = false;
+
+function initPages(event){
+
+  myApp.closeModal(".login-screen.modal-in");
+
+  
+  view_home                     = view_home || myApp.addView("#view-home",            {dynamicNavbar: false,domCache: true,linksView: "#view-home"});
+  view_pool                 = view_pool     || myApp.addView("#view-pool",        {dynamicNavbar: false,domCache: true,linksView: "#view-pool"});
+ 
+  view_host                     = view_host || myApp.addView("#view-host",            {dynamicNavbar: false,domCache: true,linksView: "#view-host"});
+  view_vm                         = view_vm || myApp.addView("#view-vm",              {dynamicNavbar: false,domCache: true,linksView: "#view-vm"});
+
+  view_home.router.load({            url: "tpl/home/index.html",animatePages: false, reload:is_reload});  
+  view_pool.router.load({        url: "tpl/pool/index.html",animatePages: false, reload:is_reload});
+ 
+  view_host.router.load({            url: "tpl/host/index.html",animatePages: false, reload:is_reload});
+  view_vm.router.load({              url: "tpl/vm/index.html",animatePages: false, reload:is_reload});
+
+
+  myApp.showTab("#view-home");
+
+  is_reload = true;
+
+  $$('.dashboardlogout').on('click', function (){
+    myApp.confirm('确定退出当前用户吗？',function(){
+      myApp.Login_Again = true;
+      myApp.addView('#view-login', {dynamicNavbar: false,domCache: true}).router.load({url: 'tpl/login.html',animatePages: false});
+      Storage.removeItem("userInfo");
+      USER_INFO.password = '';
+      USER_INFO.token = '';
+      USER_INFO.tokenKey = '';
+      Storage.setItem("userInfo",JSON.stringify(USER_INFO));
+      myApp.closeModal('.popup.modal-in');
+      myApp.hidePreloader();
+      reSetAllRequets();
+      myApp.loginScreen();
+    });
+  });
+}
+
+
 $(function(){
 
   var infos = eval('(' + Storage.getItem('userInfo') + ')');
   if(infos&&infos.token&&infos.tokenKey){
     USER_INFO = infos;
     BASE_URL = Storage.getItem("baseNet") + "/pad/v3.0";
-    if(!this.dashboard){
-      this.dashboard = myApp.addView('#view-dashboard', {dynamicNavbar: false,domCache: true});
-    }
-    this.dashboard.router.load({url: "tpl/dashboard.html",animatePages: false});
-    myApp.popup('.popup-dashboard');
+    initPages();
 
-    setTimeout(function(){
-      if(myApp.showAssisTime){
-        $$("#assistive").show();
-      }
-    },2000);
   }else{
     myApp.addView('#view-login', {dynamicNavbar: false,domCache: true}).router.load({url: 'tpl/login.html',animatePages: false});
   }
-
-  function assistiveViewModel(){
-    this.isLow = ko.observable('false');
-    this.setLow = function(){
-      this.isLow('true');
-    }
-    this.setHigh = function(){
-      this.isLow('false');
-    }
-  }
-  var assisViewModel = new assistiveViewModel();
-  ko.applyBindings(assisViewModel, document.getElementById("assistive"));
-  window.Assistive_viewModel = assisViewModel;
-
 
   /*filter*/
   function ViewModel(){
@@ -101,68 +120,6 @@ $(function(){
   ko.applyBindings(viewModel, document.getElementById("indexFilter"));
   window.indexFilter_viewModel = viewModel;
 
-
-  /*assistive touch*/
-  var win_w = parseInt($$("body").width());
-  $$('.assistive').css("left",win_w-60+'px');
-  var def_y,def_x,new_y,new_x,_touch,def_left,def_top;
-  $$('.assistive').on('touchstart', function(event) {
-    ismove = false;
-    _touch = $$(this);
-    event.preventDefault();
-    var e = event.touches[0];
-    def_x = e.clientX;
-    def_y = e.clientY;
-    def_left = parseInt(_touch.css('left'));
-    def_top = parseInt(_touch.css('top'));
-    _touch.css({'-webkit-transition':'',"opacity":1});
-  });
-  $$('.assistive').on('touchmove', function(event) {
-    setTimeout(function(){
-      ismove = true;
-    },200)
-    
-    event.preventDefault();
-    var e = event.touches[0];
-    new_x = e.clientX;
-    new_y = e.clientY;
-    _touch.css({'left':def_left+(new_x-def_x)+'px','top':def_top+(new_y-def_y)+'px'});
-    event.stopPropagation();
-  });
-  function EndTouch(){
-    if(parseInt(_touch.css('left'))>win_w/2-30){
-      if(parseInt(_touch.css('top'))<0){
-        $$('.assistive').css({'left': (win_w-60)+'px','top': '10px','-webkit-transition': 'left 0.5s ease'});
-      }else if(parseInt(_touch.css('top'))>$$(window).height()-60){
-        $$('.assistive').css({'left': (win_w-60)+'px','top': $$(window).height()-70+'px','-webkit-transition': 'left 0.5s ease'});
-      }else{
-        $$('.assistive').css({'left': (win_w-60)+'px','-webkit-transition': 'left 0.5s ease'});
-      }
-    }else{
-      if(parseInt(_touch.css('top'))<0){
-        $$('.assistive').css({'left': '0px','top': '10px','-webkit-transition': 'left 0.5s ease'});
-      }else if(parseInt(_touch.css('top'))>$$(window).height()-60){
-        $$('.assistive').css({'left': '0px','top': $$(window).height()-70+'px','-webkit-transition': 'left 0.5s ease'});
-      }else{
-        $$('.assistive').css({'left': '0px','-webkit-transition': 'left 0.5s ease'});
-      }
-    }
-    setTimeout(function(){
-      _touch.css({"opacity":0.5});
-    },1000);
-  }
-  $$('.assistive').on('touchout', function(event) {
-    EndTouch();
-  });
-  $$('.assistive').on('touchend', function(event) {
-    EndTouch();
-  });
-  var ismove = false;
-  $$('.assistive').on('click', function(event) {
-    if(ismove) return;
-    myApp.popover($("#popover-datacenter").html(), event.target)
-  });
-
 });
 
 /*菜单tab页加载机制 start*/
@@ -170,10 +127,10 @@ var clickedBusness = false;
 function clickBusness(){
     window.indexFilter_viewModel.changePage('business');
     if(clickedBusness) return;
-    window.indexFilter_busdomain_viewModel.getBusinessDomains();
+    window.business_index_viewModel.loadData();
     clickedBusness = true;
 }
-var clickedPool = false;
+var clickedPool = false
 function clickPool(){
     window.indexFilter_viewModel.changePage('pool');
     if(clickedPool) return;
@@ -210,7 +167,6 @@ function clickSetting(){
 
 function reSetAllRequets(){
   clickedBusness = false;
-  clickedPool = false;
   clickedHost = false;
   clickedVm = false;
   clickedStorage = false;
@@ -221,6 +177,7 @@ function reSetAllRequets(){
 /*内容tab页加载机制 start*/
 var hostListclicked = false;
 function innerTabclick_host(){
+  window.poolShow_index_viewModel.changeNav('host');
   if(hostListclicked) return;
   hostListclicked = true;
   window.hostList_viewModel.loadData(false);
@@ -231,6 +188,7 @@ var vmListclicks = {
   "business":false
 }
 function innerTabclick_vm(page){
+  window.poolShow_index_viewModel.changeNav('vm');
   var clicked;
   switch(page){
     case 'pool':

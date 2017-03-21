@@ -2,9 +2,9 @@
 <div data-page="pool-index" class="page whitebg">
   <div class="navbar">
     <div class="navbar-inner">
-        <div class="center sliding"><span data-bind="text: dcName"></span>-资源池总览</div>
+        <div class="center sliding">VDC总览</div>
         <div class="right">
-            <a href="#" class="link icon-only open-panel" data-panel="right">筛选</a>
+            <a href="#" class="link icon-only" data-bind="click: refresh">刷新</a>
         </div> 
     </div>
   </div>
@@ -13,43 +13,36 @@
       <div class="preloader"></div>
       <div class="pull-to-refresh-arrow"></div>
     </div>
-    <div class="top-pool sliding">
+    <div class="top-pool sliding" data-bind="with: infos">
         <div class="row no-gutter">
           <div class="col-20"><span class="topbg"></span></div>
-          <div class="col-10 text-right"><h2 data-bind="text: pools_count"></h2><span>资源池数</span></div>
-          <div class="col-70">
-            <div class="row no-gutter" style="overflow-x:hidden;">
-              <!-- ko if: hypervisor()=='' -->
-              <div class="col-auto">
-                <h3>虚拟化</h3>
-                <div id="pool_vtype_chart" style="height: 150px; width: 160px"></div>
-              </div>
-              <!-- /ko -->
-              <!-- ko if: hypervisor()!='PowerVM' -->
-              <div class="col-auto">
-                <h3>CPU(X86)</h3>
-                <div id="pool_cpu_chart" style="height: 150px; width: 160px"></div>
-              </div>
-              <!-- /ko -->
-              <!-- ko if: hypervisor()=='PowerVM'||hypervisor()=='' -->
-              <div class="col-auto">
-                <h3>CPU(小型机)</h3>
-                <div id="pool_cpu_chart2" style="height: 150px; width: 160px"></div>
-              </div>
-              <!-- /ko -->
-              <div class="col-auto">
-                <h3>內存</h3>
-                <div id="pool_memory_chart" style="height: 150px; width: 160px"></div>
-              </div>
-              <div class="col-auto">
-                <h3>存储</h3>
-                <div id="pool_storage_chart" style="height: 150px; width: 160px"></div>
-              </div>
-            </div>
+          <div class="col-20 text-right">
+              <h2 data-bind="text: vdcNum"></h2><span>VDC总数</span>
+          </div>
+          <div class="col-20 text-right">
+              <h2 data-bind="text: x86Num"></h2><span>X86物理机数</span>
+          </div>
+          <div class="col-20 text-right">
+            <h2 data-bind="text: powerNum"></h2><span>Power物理机数</span>
+          </div>
+          <div class="col-10 text-right">
           </div>
         </div>
     </div>  
     <div class="content-block noborder">
+      <div class="list-block">
+        <div class="item-content" style="width:350px;">
+          <div class="item-title label" style="width:30%;">VDC名称：</div>
+          <div class="item-inner">
+            
+            <div class="item-input">
+              <input type="text" data-bind="value: vdcName">
+            </div>
+            
+          </div>
+          <button class="button active item-title" style="margin-left:15px;width:36%;" data-bind="click: search">搜索</button>
+        </div>
+      </div>
       <div class="content-block-inner">
         <table data-bind="visible: dataList().length==0" width="100%">
           <tbody>
@@ -65,7 +58,35 @@
                 <table class="listtablestyle1">
                   <tbody>
                     <tr>
-                      <th><span class="block-icon host"></span>物理机数:</th>
+                      <th><span class="block-icon host"></span>X86物理机:</th>
+                      <td>
+                        <div class="block-process darkblue-gray">
+                          <div class="block-process darkblue" data-bind="style: {'width':Number(hostNum)/0.64+'%'}">
+                          </div>
+                          <span class="unit"></span>
+                          <span class="unit"></span>
+                          <span class="unit"></span>
+                          <span class="unit"></span>
+                          <span class="unit"></span>
+                          <span class="unit"></span>
+                          <span class="unit"></span>
+                          <span class="unit"></span>
+                          <span class="unit"></span>
+                          <span class="unit"></span>
+                          <span class="unit"></span>
+                          <span class="unit"></span>
+                          <span class="unit"></span>
+                          <span class="unit"></span>
+                          <span class="unit"></span>
+                          <span class="unit"></span>
+                          <span class="unit"></span>
+                          <span class="unit"></span>
+                        </div>
+                      </td>
+                      <td class="text-right"><span data-bind="text: hostNum"></span>台</td>                       
+                    </tr>
+                    <tr>
+                      <th><span class="block-icon host"></span>Power物理机:</th>
                       <td>
                         <div class="block-process darkblue-gray">
                           <div class="block-process darkblue" data-bind="style: {'width':Number(hostNum)/0.64+'%'}">

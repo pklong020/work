@@ -8,10 +8,10 @@ function backToLogin(res){
   myApp.Login_Again = true;
   reSetAllRequets();
   myApp.hidePreloader();
-  window.overview_viewModel.whichDc('');
+  // window.overview_viewModel.whichDc('');
   if(!myApp.isInLoginPage) myApp.addView('#view-login', {dynamicNavbar: false,domCache: true}).router.load({url: 'tpl/login.html',animatePages: false});
   interAlert = false;
-  $$("#assistive").hide();
+  // $$("#assistive").hide();
   if(res&&res.tokenCheck==false){
     myApp.alert('您的登录已过期，请重新登录！',function(){
       myApp.closeModal('.popup.modal-in');

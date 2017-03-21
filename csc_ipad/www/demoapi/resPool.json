@@ -1,13 +1,10 @@
 {
-  "winserverNum": 3,
-  "pvmCpuTotal": 8.0,
-  "availMemory": 17850.0,
-  "storageTotal": 3789.15,
-  "X86AvailCpu": 86912.68,
-  "X86CpuTotal": 103564.0,
+  "vdcNum": 3,
+  "x86Num": 8,
+  "powerNum": 20,
   "data": [
     {
-      "resourcePoolName": "winserver2.0资源池",
+      "resourcePoolName": "VDC001",
       "resourcePoolId": 1,
       "datacenterId": 2,
       "datacenterName": "68域",
@@ -23,7 +20,7 @@
       "cpuSlots": 4
     },
     {
-      "resourcePoolName": "117资源池",
+      "resourcePoolName": "VDC002",
       "resourcePoolId": 1,
       "datacenterId": 2,
       "datacenterName": "68域",
@@ -39,7 +36,7 @@
       "cpuSlots": 1
     },
     {
-      "resourcePoolName": "WinServer25",
+      "resourcePoolName": "VDC003",
       "resourcePoolId": 1,
       "datacenterId": 2,
       "datacenterName": "68域",
@@ -54,10 +51,5 @@
       "hypervisor": "winserver",
       "cpuSlots": 2
     }
-  ],
-  "pvmAvailCpu": 2.0,
-  "availStorage": 162.39000000000001,
-  "vmwareNum": 0,
-  "memoryTotal": 114335.0,
-  "powerNum": 0
+  ]
 }

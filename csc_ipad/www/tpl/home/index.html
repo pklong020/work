@@ -1,13 +1,17 @@
 
 <!-- Page, data-page contains page name-->
-<div data-page="home-index" class="page">
+<div data-page="home-index" class="page with-subnavbar">
     <div class="navbar">
       <div class="navbar-inner">
-          <div class="center sliding" data-bind="with: dcInfo"><span data-bind="text: name"></span>-资源总览</div>
+          <div class="center sliding">首页</div>
+          <div class="right">
+            <a href="#" class="link icon-only" data-bind="click: refresh">刷新</a>
+          </div>  
       </div>
+
     </div>
     <!-- Scrollable page content-->
-    <div class="page-content pull-to-refresh-content">
+    <div class="page-content pull-to-refresh-content" style="padding-top:44px;">
       <div class="pull-to-refresh-layer">
         <div class="preloader"></div>
         <div class="pull-to-refresh-arrow"></div>
@@ -23,29 +27,55 @@
           <div class="value pool"><b data-bind="text: resPoolNumber"></b></div>
           <div class="value host"><b data-bind="text: hostNubmer"></b></div>
         </div>
-        <div class="content-block homechartlist" data-bind="with: stat">
-            <div class="row">
-              <div class="col-auto text-center">
-                <h3>CPU(X86)</h3>
-                <div id="total_cpu_chart_home" style="height: 200px;width:200px;"></div>
-                <h4>总计：<span data-bind="text: x86TotalCpu || 0"></span>GHz</h4>
-              </div>
-              <div class="col-auto text-center">
-                <h3>CPU(小型机)</h3>
-                <div id="total_cpu_chart_home2" style="height: 200px;width:200px;"></div>
-                <h4>总计：<span data-bind="text: pvmTotalCpu || 0"></span>核</h4>
-              </div>
-              <div class="col-auto text-center">
-                <h3>內存</h3>
-                <div id="total_memory_chart_home" style="height: 200px;width:200px;"></div>
-                <h4>总计：<span data-bind="text: memoryTotal || 0"></span>GB</h4>
-              </div>
-              <div class="col-auto text-center">
-                <h3>存储</h3>
-                <div id="total_storage_chart_home" style="height: 200px;width:200px;"></div>
-                <h4>总计：<span data-bind="text: storageTotal || 0"></span><span data-bind="if: isTB">TB</span><span data-bind="if: !isTB">GB</span></h4>
-              </div>
+        <div class="subnavbar sliding" style="top:450px;background:#fff;border-bottom:1px solid #eee">
+            <div class="buttons-tab" style="width:400px;margin:0 auto;">
+                <a href="#view_home_x86" class="tab-link button active">X86</a>
+                <a href="#view_home_power" class="tab-link button">Power</a>
+            </div>        
+        </div>
+        <div class="tabs" style="padding-top:44px;">
+          <div id="view_home_x86" class="tab active">
+            <div class="content-block homechartlist" data-bind="with: stat">
+                <div class="row">
+                  <div class="col-auto text-center">
+                    <h3 style="width:200px;">CPU</h3>
+                    <div id="total_cpu_chart_home" style="height: 200px;width:200px;"></div>
+                    <h4>总计：<span data-bind="text: x86TotalCpu || 0"></span>GHz</h4>
+                  </div>
+                  <div class="col-auto text-center">
+                    <h3 style="width:200px;">內存</h3>
+                    <div id="total_memory_chart_home" style="height: 200px;width:200px;"></div>
+                    <h4>总计：<span data-bind="text: memoryTotal || 0"></span>GB</h4>
+                  </div>
+                  <div class="col-auto text-center">
+                    <h3 style="width:200px;">存储</h3>
+                    <div id="total_storage_chart_home" style="height: 200px;width:200px;"></div>
+                    <h4>总计：<span data-bind="text: storageTotal || 0"></span><span data-bind="if: isTB">TB</span><span data-bind="if: !isTB">GB</span></h4>
+                  </div>
+                </div>
             </div>
+          </div>
+          <div id="view_home_power" class="tab">
+            <div class="content-block homechartlist" data-bind="with: stat">
+                <div class="row">
+                  <div class="col-auto text-center">
+                    <h3 style="width:200px;">CPU</h3>
+                    <div id="total_cpu_chart_home2" style="height: 200px;width:200px;"></div>
+                    <h4>总计：<span data-bind="text: x86TotalCpu || 0"></span>GHz</h4>
+                  </div>
+                  <div class="col-auto text-center">
+                    <h3 style="width:200px;">內存</h3>
+                    <div id="total_memory_chart_home2" style="height: 200px;width:200px;"></div>
+                    <h4>总计：<span data-bind="text: memoryTotal || 0"></span>GB</h4>
+                  </div>
+                  <div class="col-auto text-center">
+                    <h3 style="width:200px;">存储</h3>
+                    <div id="total_storage_chart_home2" style="height: 200px;width:200px;"></div>
+                    <h4>总计：<span data-bind="text: storageTotal || 0"></span><span data-bind="if: isTB">TB</span><span data-bind="if: !isTB">GB</span></h4>
+                  </div>
+                </div>
+            </div>
+          </div>
         </div>
     </div>
 </div>

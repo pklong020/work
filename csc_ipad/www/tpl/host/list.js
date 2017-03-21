@@ -7,31 +7,32 @@ myApp.onPageInit("host-list", function(page) {
     this.resPoolId = ko.observable("");
     this.belongTab = ko.observable(page.query.belongTab);
 
+    this.selectType = ko.observable("");
+    this.types = [{
+      "typeId":'',
+      "typeName":'全部'
+    },{
+      "typeId":1,
+      "typeName":'虚拟化'
+    },{
+      "typeId":2,
+      "typeName":'非虚拟化'
+    }]
+    this.selectType.subscribe(function(val){
+      self.loadData(false,val);
+    })
+
     this.loading = false;
     this.page = 1;
     this.noMore = ko.observable();
     self.isInit = true;
     this.loadData = function(is_loadMore, hypervisor, resPoolId){
-      if(hypervisor){
-        this.hypervisor(hypervisor);
-      }else if(page.query.hypervisor){
-        this.hypervisor(page.query.hypervisor);
-      }else{
-        this.hypervisor("");
-      }
-      if(resPoolId){
-        this.resPoolId(resPoolId);
-      }else if(page.query.id){
-        this.resPoolId(page.query.id);
-      }else{
-        this.resPoolId("");
-      }
+
       if (self.loading) return;
       self.loading = true;
       if(!is_loadMore) self.page = 1;
 
       RestServiceJs.query(BASE_URL+"/resPool/"+page.query.id+"/host",{"dcId":CVM_PAD.dcId,"hypervisor":this.hypervisor(),"firstResult":(self.page-1)*PAGE_SIZE,"maxResult":PAGE_SIZE},function(data){
-      //$.ajax("tpl/host/list.json?id="+page.query.id+"&page="+self.page).done(function(data){
         self.loading = false;
         if(!is_loadMore){
           myApp.pullToRefreshDone();
@@ -76,6 +77,8 @@ myApp.onPageInit("host-list", function(page) {
   var viewModel = new ViewModel();
   ko.applyBindings(viewModel, $$(page.container)[0]);
   window.hostList_viewModel = viewModel;
+
+  viewModel.loadData(false,viewModel.hypervisor(),viewModel.resPoolId());
 
   $$(page.container).find('.pull-to-refresh-content').on('refresh', function (e) {
     viewModel.loadData(false,viewModel.hypervisor(),viewModel.resPoolId());

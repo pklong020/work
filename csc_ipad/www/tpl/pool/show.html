@@ -3,24 +3,19 @@
     <div class="navbar-inner">
         <div class="left sliding"><a href="#" class="back link"><i class="icon icon-back"></i><span>返回</span></a></div>
         <div class="center sliding" data-bind="text: name"></div>
-        <div class="right sliding"></div>
+        <div class="right sliding">
+            <a href="#" class="link icon-only" data-bind="click: refresh">刷新</a>
+        </div>
         <div class="subnavbar sliding">
             <div class="buttons-tab">
-                <a href="#view_pool_summary" class="tab-link button active">摘要</a>
-                <a href="#view_pool_host" class="tab-link button" onclick="innerTabclick_host()">物理机</a>
+                <a href="#view_pool_host" class="tab-link button active" onclick="innerTabclick_host()">物理机</a>
                 <a href="#view_pool_vm" class="tab-link button" onclick="innerTabclick_vm('pool')">虚拟机</a>
-                <a href="#view_pool_storage" class="tab-link button" onclick="innerTabclick_storage('pool')">存储池</a>
-            </div>
-            <div class="top-pool-summary"><span class="icon-summary-pool"></span><h2 data-bind="text: name"></h2></div>            
+            </div>        
         </div>        
     </div>
   </div>
   <div class="page-content views tabs">
-    <div id="view_pool_summary" class="view tab active">
-      <div class="pages">
-      </div>
-    </div>
-    <div id="view_pool_host" class="view tab">
+    <div id="view_pool_host" class="view tab active">
       <div class="pages">
       </div>
     </div>
@@ -28,9 +23,5 @@
       <div class="pages">
       </div>
     </div>
-    <div id="view_pool_storage" class="view tab">
-      <div class="pages">
-      </div>
-    </div> 
   </div> 
 </div>                

@@ -1,9 +1,18 @@
 <div data-page="login" class="page page-grouped no-toolbar no-navbar no-swipeback">
   <div class="page-content login-screen-content">
-    <div class="login-screen-title"></div>
+    <div class="login-screen-title">
+      <span>金融云服务管理平台</span>
+    </div>
     <form>
       <div class="list-block">
         <ul>
+          <li class="item-content">
+            <div class="item-inner item-network">
+              <div class="item-input">
+                <input type="text" placeholder="请输入网络地址" data-bind="value: network"/>
+              </div>
+            </div>
+          </li>
           <li class="item-content">
             <div class="item-inner item-user">
               <div class="item-input">
@@ -15,13 +24,6 @@
             <div class="item-inner item-password">
               <div class="item-input">
                 <input type="password" placeholder="请输入密码" data-bind="value: password"/>
-              </div>
-            </div>
-          </li>
-          <li class="item-content">
-            <div class="item-inner item-network">
-              <div class="item-input">
-                <input type="text" placeholder="请输入网络地址" data-bind="value: network"/>
               </div>
             </div>
           </li>
