@@ -5,17 +5,35 @@
         <div class="pull-to-refresh-arrow"></div>
       </div>
       <div class="content-block noborder">
-          <div class="list-block">
-            <div class="item-content" style="width:250px;">
-              <div class="item-title label" style="width:30%;">类型：</div>
-              <div class="item-inner">
-                
-                <div class="item-input">
-                  <select class="" style="text-align:center;" data-bind="options: types, optionsText: 'typeName', optionsValue: 'typeId', value: selectType">
-                  </select>
+          <div class="row">
+            <div class="col-25">
+              <div class="list-block">
+                <div class="item-content" style="width:200px;">
+                  <div class="item-title label" style="width:33%;">类型：</div>
+                  <div class="item-inner">
+                    <div class="item-input">
+                      <select class="" style="text-align:center;" data-bind="options: types, optionsText: 'typeName', optionsValue: 'typeId', value: selectType">
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+            <div class="col-25">
+              <div class="list-block">
+                <div class="item-content" style="width:250px;">
+                  <div class="item-title label" style="width:41%;">可用分区：</div>
+                  <div class="item-inner">
+                    <div class="item-input">
+                      <select class="" style="text-align:center;" data-bind="options: types, optionsText: 'typeName', optionsValue: 'typeId', value: selectType">
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-25"></div>
+            <div class="col-25"></div>
           </div>
           <div class="content-block-inner">
             <table data-bind="visible: dataList().length==0">

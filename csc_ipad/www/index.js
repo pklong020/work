@@ -53,7 +53,7 @@ $$(document).on('ajaxComplete', function () {
     myApp.hideIndicator();
 });
 
-var view_home, view_business, view_host, view_vm;
+var view_home, view_pool, view_host, view_vm;
 var is_reload = false;
 
 function initPages(event){
