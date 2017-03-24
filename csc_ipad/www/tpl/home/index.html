@@ -5,7 +5,7 @@
       <div class="navbar-inner">
           <div class="center sliding">首页</div>
           <div class="right">
-            <a href="#" class="link icon-only" data-bind="click: refresh">刷新</a>
+            <a href="#" class="link icon-only refresh" data-bind="click: refresh"></a>
           </div>  
       </div>
 
@@ -17,15 +17,18 @@
         <div class="pull-to-refresh-arrow"></div>
       </div>        
         <div class="dashboard_statistics" data-bind="with: infos">
-          <div class="value name"><b data-bind="text: $root.dcInfo().name"></b></div>
-          <div class="value vm"><b data-bind="text: vmNumber"></b></div>
-          <div class="value cpu"><b data-bind="text: cpuCoreNumber"></b><!-- <span class="mini">X86:</span><b data-bind="text: x86TotalCpu"></b><span class="mini">GHz 小型机:</span><b data-bind="text: pvmTotalCpu"></b><span class="mini">核</span> --></div>
+          
+          <div class="value vm"><b data-bind="text: vmNum"></b> 台</div>
+          <div class="value cpu1"><b data-bind="text: cpuNum"></b> 个</div>
+          <div class="value cpu2"><b data-bind="text: cpuNum"></b> 颗</div>
           <div class="value memory"><b data-bind="text: memorySize"></b> GB</div>
           <div class="value storage"><b data-bind="text: storageSize"></b> TB</div>
-          <div class="value business_domain"><b data-bind="text: busDomainNum"></b></div>
-          <div class="value business"><b data-bind="text: projectNum"></b></div>
-          <div class="value pool"><b data-bind="text: resPoolNumber"></b></div>
-          <div class="value host"><b data-bind="text: hostNubmer"></b></div>
+          <div class="value pool"><b data-bind="text: resourcePoolNum"></b> 个</div>
+          <div class="value host"><b data-bind="text: hostNum"></b> 台</div>
+          <div class="value storagePool"><b data-bind="text: storagePoolNum"></b> 个</div>
+          <div class="value image"><b data-bind="text: imageNum"></b> 个</div>
+          <div class="value network"><b data-bind="text: networkNum"></b> 个</div>
+          <div class="value ipPool"><b data-bind="text: ipPoolNum"></b> 个</div>
         </div>
         <div class="subnavbar sliding" style="top:450px;background:#fff;border-bottom:1px solid #eee">
             <div class="buttons-tab" style="width:400px;margin:0 auto;">
@@ -38,19 +41,19 @@
             <div class="content-block homechartlist" data-bind="with: stat">
                 <div class="row">
                   <div class="col-auto text-center">
-                    <h3 style="width:200px;">CPU</h3>
+                    <h3>CPU</h3>
+                    <h4>总计：<span data-bind="text: x86.cpuTotal || 0"></span>GHz</h4>
                     <div id="total_cpu_chart_home" style="height: 200px;width:200px;"></div>
-                    <h4>总计：<span data-bind="text: x86TotalCpu || 0"></span>GHz</h4>
                   </div>
                   <div class="col-auto text-center">
-                    <h3 style="width:200px;">內存</h3>
+                    <h3>內存</h3>
+                    <h4>总计：<span data-bind="text: x86.memoryTotal || 0"></span>GB</h4>
                     <div id="total_memory_chart_home" style="height: 200px;width:200px;"></div>
-                    <h4>总计：<span data-bind="text: memoryTotal || 0"></span>GB</h4>
                   </div>
                   <div class="col-auto text-center">
-                    <h3 style="width:200px;">存储</h3>
+                    <h3>存储</h3>
+                    <h4>总计：<span data-bind="text: x86.storageTotal || 0"></span><span data-bind="if: x86.isTB">TB</span><span data-bind="if: !x86.isTB">GB</span></h4>
                     <div id="total_storage_chart_home" style="height: 200px;width:200px;"></div>
-                    <h4>总计：<span data-bind="text: storageTotal || 0"></span><span data-bind="if: isTB">TB</span><span data-bind="if: !isTB">GB</span></h4>
                   </div>
                 </div>
             </div>
@@ -59,19 +62,19 @@
             <div class="content-block homechartlist" data-bind="with: stat">
                 <div class="row">
                   <div class="col-auto text-center">
-                    <h3 style="width:200px;">CPU</h3>
+                    <h3>CPU</h3>
+                    <h4>总计：<span data-bind="text: power.cpuTotal || 0"></span>核</h4>
                     <div id="total_cpu_chart_home2" style="height: 200px;width:200px;"></div>
-                    <h4>总计：<span data-bind="text: x86TotalCpu || 0"></span>GHz</h4>
                   </div>
                   <div class="col-auto text-center">
-                    <h3 style="width:200px;">內存</h3>
+                    <h3>內存</h3>
+                    <h4>总计：<span data-bind="text: power.memoryTotal || 0"></span>GB</h4>
                     <div id="total_memory_chart_home2" style="height: 200px;width:200px;"></div>
-                    <h4>总计：<span data-bind="text: memoryTotal || 0"></span>GB</h4>
                   </div>
                   <div class="col-auto text-center">
-                    <h3 style="width:200px;">存储</h3>
+                    <h3>存储</h3>
+                    <h4>总计：<span data-bind="text: power.storageTotal || 0"></span><span data-bind="if: power.isTB">TB</span><span data-bind="if: !power.isTB">GB</span></h4>
                     <div id="total_storage_chart_home2" style="height: 200px;width:200px;"></div>
-                    <h4>总计：<span data-bind="text: storageTotal || 0"></span><span data-bind="if: isTB">TB</span><span data-bind="if: !isTB">GB</span></h4>
                   </div>
                 </div>
             </div>

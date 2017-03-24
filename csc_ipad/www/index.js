@@ -57,10 +57,6 @@ var view_home, view_pool, view_host, view_vm;
 var is_reload = false;
 
 function initPages(event){
-
-  myApp.closeModal(".login-screen.modal-in");
-
-  
   view_home                     = view_home || myApp.addView("#view-home",            {dynamicNavbar: false,domCache: true,linksView: "#view-home"});
   view_pool                 = view_pool     || myApp.addView("#view-pool",        {dynamicNavbar: false,domCache: true,linksView: "#view-pool"});
  
@@ -73,26 +69,9 @@ function initPages(event){
   view_host.router.load({            url: "tpl/host/index.html",animatePages: false, reload:is_reload});
   view_vm.router.load({              url: "tpl/vm/index.html",animatePages: false, reload:is_reload});
 
-
   myApp.showTab("#view-home");
 
   is_reload = true;
-
-  $$('.dashboardlogout').on('click', function (){
-    myApp.confirm('确定退出当前用户吗？',function(){
-      myApp.Login_Again = true;
-      myApp.addView('#view-login', {dynamicNavbar: false,domCache: true}).router.load({url: 'tpl/login.html',animatePages: false});
-      Storage.removeItem("userInfo");
-      USER_INFO.password = '';
-      USER_INFO.token = '';
-      USER_INFO.tokenKey = '';
-      Storage.setItem("userInfo",JSON.stringify(USER_INFO));
-      myApp.closeModal('.popup.modal-in');
-      myApp.hidePreloader();
-      reSetAllRequets();
-      myApp.loginScreen();
-    });
-  });
 }
 
 
@@ -101,11 +80,11 @@ $(function(){
   var infos = eval('(' + Storage.getItem('userInfo') + ')');
   if(infos&&infos.token&&infos.tokenKey){
     USER_INFO = infos;
-    BASE_URL = Storage.getItem("baseNet") + "/pad/v3.0";
+    BASE_URL = Storage.getItem("baseNet") + "/ipad/v1";
     initPages();
-
   }else{
     myApp.addView('#view-login', {dynamicNavbar: false,domCache: true}).router.load({url: 'tpl/login.html',animatePages: false});
+    myApp.loginScreen();
   }
 
   /*filter*/
@@ -120,6 +99,21 @@ $(function(){
   ko.applyBindings(viewModel, document.getElementById("indexFilter"));
   window.indexFilter_viewModel = viewModel;
 
+
+  $$('.dashboardlogout').on('click', function (){
+    myApp.confirm('确定退出当前用户吗？',function(){
+      myApp.Login_Again = true;
+      myApp.addView('#view-login', {dynamicNavbar: false,domCache: true}).router.load({url: 'tpl/login.html',animatePages: false});
+      Storage.removeItem("userInfo");
+      USER_INFO.password = '';
+      USER_INFO.token = '';
+      USER_INFO.tokenKey = '';
+      Storage.setItem("userInfo",JSON.stringify(USER_INFO));
+      myApp.hidePreloader();
+      reSetAllRequets();
+      myApp.loginScreen();
+    });
+  });
 });
 
 /*菜单tab页加载机制 start*/

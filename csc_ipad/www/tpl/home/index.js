@@ -12,57 +12,61 @@ myApp.onPageInit("home-index", function(page) {
       });
     }
     this.infos = ko.observable({
-      "vmNumber": "",
-      "cpuCoreNumber":"",
-      "x86TotalCpu": "",
-      "pvmTotalCpu": "",
+      "vmNum": "",
+      "cpuNum":"",
       "memorySize": "",
       "storageSize": "",
-      "busDomainNum": "",
-      "projectNum": "",
-      "resPoolNumber": "",
-      "hostNubmer": ""
+      "resourcePoolNum": "",
+      "storagePoolNum": "",
+      "hostNum": "",
+      "imageNum": "",
+      "networkNum": "",
+      "ipPoolNum": ""
     });
     this.stat = ko.observable({
-      "vmNumber": "",
-      "x86TotalCpu": "",
-      "pvmTotalCpu": "",
-      "memoryTotal": "",
-      "storageTotal": "",
-      "busDomainNum": "",
-      "projectNum": "",
-      "resPoolNumber": "",
-      "hostNubmer": "",
-      "isTB":false
+      "x86":{},
+      "power":{}
     });
 
     this.loadData = function(){
-      RestServiceJs.query(BASE_URL+"/overallDetails/resourceSummary",{},function(data){
+      RestServiceJs.query(BASE_URL+"/datacenter/statics",{},function(data){
         myApp.pullToRefreshDone();
         data.memorySize = Number((Number(data.memorySize)/1024).toFixed(2));
         data.storageSize = Number((Number(data.storageSize)/1024).toFixed(2));
         self.infos(data);
       });
-      RestServiceJs.query(BASE_URL+"/overallDetails/resourceStat",{},function(data){
-        data.x86TotalCpu = Number((Number(data.x86TotalCpu)/1000).toFixed(2));
-        data.x86UsedCpu = Number((Number(data.x86UsedCpu)/1000).toFixed(2));
-        data.memoryTotal = Number((Number(data.memoryTotal)/1024).toFixed(2));
-        data.memoryUsed = Number((Number(data.memoryUsed)/1024).toFixed(2));
-        if(Number(data.storageTotal)>1023){
-          data.isTB = true;
-          data.storageTotal = Number((Number(data.storageTotal)/1024).toFixed(2));
-          data.storageUsed = Number((Number(data.storageUsed)/1024).toFixed(2));
+      RestServiceJs.query(BASE_URL+"/host/statics",{},function(data){
+        data.x86.cpuTotal = Number((Number(data.x86.cpuTotal)/1000).toFixed(2));
+        data.x86.cpuAvail= Number((Number(data.x86.cpuAvail)/1000).toFixed(2));
+        data.x86.memoryTotal = Number((Number(data.x86.memoryTotal)/1024).toFixed(2));
+        data.x86.memoryAvail = Number((Number(data.x86.memoryAvail)/1024).toFixed(2));
+        if(Number(data.x86.storageTotal)>1023){
+          data.x86.isTB = true;
+          data.x86.storageTotal = Number((Number(data.x86.storageTotal)/1024).toFixed(2));
+          data.x86.storageAvail = Number((Number(data.x86.storageAvail)/1024).toFixed(2));
         }else{
           data.isTB = false;
-          data.storageTotal = Number(Number(data.storageTotal).toFixed(2));
-          data.storageUsed = Number(Number(data.storageUsed).toFixed(2));
+          data.x86.storageTotal = Number(Number(data.x86.storageTotal).toFixed(2));
+          data.x86.storageAvail = Number(Number(data.x86.storageAvail).toFixed(2));
+        }
+
+        data.power.cpuTotal = Number(Number(data.power.cpuTotal).toFixed(2));
+        data.power.cpuAvail= Number(Number(data.power.cpuAvail).toFixed(2));
+        data.power.memoryTotal = Number((Number(data.power.memoryTotal)/1024).toFixed(2));
+        data.power.memoryAvail = Number((Number(data.power.memoryAvail)/1024).toFixed(2));
+        if(Number(data.power.storageTotal)>1023){
+          data.power.isTB = true;
+          data.power.storageTotal = Number((Number(data.power.storageTotal)/1024).toFixed(2));
+          data.power.storageAvail = Number((Number(data.power.storageAvail)/1024).toFixed(2));
+        }else{
+          data.isTB = false;
+          data.power.storageTotal = Number(Number(data.power.storageTotal).toFixed(2));
+          data.power.storageAvail = Number(Number(data.power.storageAvail).toFixed(2));
         }
         
-        data.pvmTotalCpu = Number(Number(data.pvmTotalCpu).toFixed(2));
-        data.pvmUsedCpu = Number(Number(data.pvmUsedCpu).toFixed(2));
         self.stat(data);
-        initTotal_x86_chart_home(data);
-        initTotal_power_chart_home(data);
+        initTotal_x86_chart_home(data.x86);
+        initTotal_power_chart_home(data.power);
       },null,true);
     }
     this.refresh = function(){
@@ -146,12 +150,12 @@ function initTotal_x86_chart_home(data){
           name: 'CPU',
           data: [{
                   name: '已用',
-                  y: data.x86UsedCpu,
-                  color:"#4791d2"
+                  y: data.cpuTotal-data.cpuAvail,
+                  color:"#23b7e5"
               },
               {
                   name: '未用',
-                  y: data.x86TotalCpu-data.x86UsedCpu,
+                  y: data.cpuAvail,
                   color:"#ffd800"
               }
           ]
@@ -218,12 +222,12 @@ function initTotal_x86_chart_home(data){
           name: '内存',
           data: [{
                   name: '已用',
-                  y: data.memoryUsed,
-                  color:"#4791d2"
+                  y: data.memoryTotal - data.memoryAvail,
+                  color:"#23b7e5"
               },
               {
                   name: '未用',
-                  y: data.memoryTotal - data.memoryUsed,
+                  y: data.memoryAvail,
                   color:"#ffd800"
               }
           ]
@@ -291,12 +295,12 @@ function initTotal_x86_chart_home(data){
         name: '存储',
         data: [{
                 name: '已用',
-                y: data.storageUsed,
-                color:"#4791d2"
+                y: data.storageTotal - data.storageAvail,
+                color:"#23b7e5"
             },
             {
                 name: '未用',
-                y: data.storageTotal - data.storageUsed,
+                y: data.storageAvail,
                 color:"#ffd800"
             }
         ]
@@ -366,12 +370,12 @@ function initTotal_power_chart_home(data){
           name: 'CPU',
           data: [{
                   name: '已用',
-                  y: data.pvmUsedCpu,
-                  color:"#4791d2"
+                  y: data.cpuTotal - data.cpuAvail,
+                  color:"#23b7e5"
               },
               {
                   name: '未用',
-                  y: data.pvmTotalCpu-data.pvmUsedCpu,
+                  y: data.cpuAvail,
                   color:"#ffd800"
               }
           ]
@@ -438,12 +442,12 @@ function initTotal_power_chart_home(data){
           name: '内存',
           data: [{
                   name: '已用',
-                  y: data.memoryUsed,
-                  color:"#4791d2"
+                  y: data.memoryTotal - data.memoryAvail,
+                  color:"#23b7e5"
               },
               {
                   name: '未用',
-                  y: data.memoryTotal - data.memoryUsed,
+                  y: data.memoryAvail,
                   color:"#ffd800"
               }
           ]
@@ -511,12 +515,12 @@ function initTotal_power_chart_home(data){
         name: '存储',
         data: [{
                 name: '已用',
-                y: data.storageUsed,
-                color:"#4791d2"
+                y: data.storageTotal - data.storageAvail,
+                color:"#23b7e5"
             },
             {
                 name: '未用',
-                y: data.storageTotal - data.storageUsed,
+                y: data.storageAvail,
                 color:"#ffd800"
             }
         ]

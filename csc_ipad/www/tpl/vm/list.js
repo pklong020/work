@@ -3,8 +3,6 @@ myApp.onPageInit("vm-list", function(page) {
   function ViewModel(){
     this.dataList = ko.observableArray([]);
     this.fromPage = ko.observable();
-    this.hypervisor = ko.observable(page.query.hypervisor);
-    this.belongTab = ko.observable(page.query.belongTab);
 
     this.loading = false;
     this.page = 1;
@@ -15,26 +13,8 @@ myApp.onPageInit("vm-list", function(page) {
       if (self.loading) return;
       self.loading = true;
       if(!is_loadMore) self.page = 1;
-
-      var url;
-      var resourcePoolId='';
-      switch(page.query.fromPage){
-        case "project":
-          this.fromPage("project");
-          url=BASE_URL+"/project/"+page.query.id+"/vm";
-          break;
-        case "pool":
-          this.fromPage("pool");
-          url=BASE_URL+"/resPool/"+page.query.id+"/vm";
-          resourcePoolId=page.query.id;
-          break;
-        case "host":
-          this.fromPage("host");
-          url=BASE_URL+"/host/"+page.query.id+"/vm";
-          resourcePoolId=page.query.resourcePoolId==0?'':page.query.resourcePoolId;
-          break;
-      }
-      RestServiceJs.query(url,{"dcId":CVM_PAD.dcId,"hypervisor":page.query.hypervisor || '',"resourcePoolId":resourcePoolId,"firstResult":(self.page-1)*PAGE_SIZE,"maxResult":PAGE_SIZE},function(data){
+      
+      RestServiceJs.query(BASE_URL+"/vdc/"+page.query.id+"/vms",{"firstResult":(self.page-1)*PAGE_SIZE,"maxResult":PAGE_SIZE},function(data){
         self.loading = false;
         if(!is_loadMore){
           myApp.pullToRefreshDone();
@@ -63,6 +43,15 @@ myApp.onPageInit("vm-list", function(page) {
             data.data[i].type="others";
           }
           switch(data.data[i].state){
+            case 'SHUTOFF':
+              data.data[i].state='已关机';
+              data.data[i].stateCss='gray';
+              break;
+            case 'ACTIVE':
+              data.data[i].state='运行中';
+              data.data[i].stateCss='green';
+              break;
+            
             case 'STOPPED':
               data.data[i].state='已关机';
               data.data[i].stateCss='gray';

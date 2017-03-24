@@ -32,7 +32,7 @@ myApp.onPageInit("host-list", function(page) {
       self.loading = true;
       if(!is_loadMore) self.page = 1;
 
-      RestServiceJs.query(BASE_URL+"/resPool/"+page.query.id+"/host",{"dcId":CVM_PAD.dcId,"hypervisor":this.hypervisor(),"firstResult":(self.page-1)*PAGE_SIZE,"maxResult":PAGE_SIZE},function(data){
+      RestServiceJs.query(BASE_URL+"/vdc/"+page.query.id+"/host",{"firstResult":(self.page-1)*PAGE_SIZE,"maxResult":PAGE_SIZE},function(data){
         self.loading = false;
         if(!is_loadMore){
           myApp.pullToRefreshDone();

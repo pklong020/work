@@ -4,7 +4,7 @@
     <div class="navbar-inner">
         <div class="center sliding">VDC总览</div>
         <div class="right">
-            <a href="#" class="link icon-only" data-bind="click: refresh">刷新</a>
+            <a href="#" class="link icon-only refresh" data-bind="click: refresh"></a>
         </div> 
     </div>
   </div>
@@ -15,35 +15,27 @@
     </div>
     <div class="top-pool sliding" data-bind="with: infos">
         <div class="row no-gutter">
-          <div class="col-20"><span class="topbg"></span></div>
-          <div class="col-20 text-right">
-              <h2 data-bind="text: vdcNum"></h2><span>VDC总数</span>
+          <div class="col-20"></div>
+          <div class="col-20">
+              <h2 data-bind="text: total"></h2>
           </div>
-          <div class="col-20 text-right">
-              <h2 data-bind="text: x86Num"></h2><span>X86物理机数</span>
+          <div class="col-20">
+              <h2 data-bind="text: x86Num"></h2>
           </div>
-          <div class="col-20 text-right">
-            <h2 data-bind="text: powerNum"></h2><span>Power物理机数</span>
+          <div class="col-20">
+            <h2 data-bind="text: powerNum"></h2>
           </div>
-          <div class="col-10 text-right">
+          <div class="col-15">
           </div>
         </div>
     </div>  
     <div class="content-block noborder">
-      <div class="list-block">
-        <div class="item-content" style="width:350px;">
-          <div class="item-title label" style="width:30%;">VDC名称：</div>
-          <div class="item-inner">
-            
-            <div class="item-input">
-              <input type="text" data-bind="value: vdcName">
-            </div>
-            
-          </div>
-          <button class="button active item-title" style="margin-left:15px;width:36%;" data-bind="click: search">搜索</button>
-        </div>
+      <div class="search-inputbox">
+          <input type="text" placeholder="搜索VDC名称" data-bind="value: vdcName">
+          <a data-bind="click: search"></a>
       </div>
-      <div class="content-block-inner">
+      <div style="clear:both;"></div>
+      <div class="content-block-inner" style="padding-top:15px;">
         <table data-bind="visible: dataList().length==0" width="100%">
           <tbody>
             <tr>
@@ -52,174 +44,52 @@
           </tbody>
         </table>
         <div class="product-list clearfix" data-bind="foreach: dataList">
-          <a data-bind="attr:{href:'tpl/pool/show.html?id='+resourcePoolId+'&resourcePoolName='+resourcePoolName+'&hypervisor='+hypervisor+'&belongTab=pool'}">
+          <a data-bind="attr:{href:'tpl/pool/show.html?id='+uuid+'&belongTab=pool'}">
             <div class="block-product block-pool">
-              <div class="block-pool-title" data-bind="text: resourcePoolName"></div>
+              <div class="block-pool-title" data-bind="text: name"></div>
                 <table class="listtablestyle1">
                   <tbody>
                     <tr>
-                      <th><span class="block-icon host"></span>X86物理机:</th>
+                      <th><span class="block-icon host1"></span>X86物理机:</th>
                       <td>
-                        <div class="block-process darkblue-gray">
-                          <div class="block-process darkblue" data-bind="style: {'width':Number(hostNum)/0.64+'%'}">
-                          </div>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                        </div>
+                        
                       </td>
-                      <td class="text-right"><span data-bind="text: hostNum"></span>台</td>                       
+                      <td class="text-right"><span data-bind="text: x86 || 0"></span>台</td>                       
                     </tr>
                     <tr>
-                      <th><span class="block-icon host"></span>Power物理机:</th>
+                      <th><span class="block-icon host2"></span>Power物理机:</th>
                       <td>
-                        <div class="block-process darkblue-gray">
-                          <div class="block-process darkblue" data-bind="style: {'width':Number(hostNum)/0.64+'%'}">
-                          </div>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                        </div>
+                        
                       </td>
-                      <td class="text-right"><span data-bind="text: hostNum"></span>台</td>                       
+                      <td class="text-right"><span data-bind="text: power || 0"></span>台</td>                       
                     </tr>
                     <tr>
                       <th><span class="block-icon vm"></span>虚拟机数:</th>
                       <td>
-                        <div class="block-process blue-gray">
-                          <div class="block-process blue" data-bind="style: {'width':Number(vmNum)/0.64/650+'%'}">
-                          </div>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                        </div>                        </td>
-                      <td class="text-right"><span data-bind="text: vmNum"></span>台</td>                       
+                        <img src="img/icon/pra1.png" width="60" height="10">
+                      </td>
+                      <td class="text-right"><span data-bind="text: vms || 0"></span>台</td>                       
                     </tr>
                     <tr>
                       <th><span class="block-icon cpu"></span>CPU数:</th>
                       <td>
-                        <div class="block-process green-gray">
-                          <div class="block-process green" data-bind="style: {'width':hypervisor=='PowerVM'?Number(cpu)/0.64/160+'%':Number(cpuSlots)/0.64/160+'%'}">
-                          </div>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                        </div>                        </td>
-                      <td class="text-right"><span data-bind="visible: hypervisor!='PowerVM'"><span data-bind="text: cpuSlots"></span>颗</span><span data-bind="visible: hypervisor=='PowerVM'"><span data-bind="text: cpu"></span>核</span></td>                       
+                        <img src="img/icon/pra2.png" width="60" height="10">                       
+                      </td>
+                      <td class="text-right"><span data-bind="text: cpu || 0"></span>个</td>                       
                     </tr>
                     <tr>
                       <th><span class="block-icon memory"></span>内存:</th>
                       <td>
-                        <div class="block-process orange-gray">
-                          <div class="block-process orange" data-bind="style: {'width':Number(memory)/6815744+'%'}">
-                          </div>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                        </div>                        </td>
-                      <td class="text-right"><span data-bind="text: (memory/1024).toFixed(2)"></span>GB</td>                       
+                        <img src="img/icon/pra3.png" width="60" height="10">                       
+                      </td>
+                      <td class="text-right"><span data-bind="text: (mem/1024).toFixed(2)"></span>GB</td>                       
                     </tr>
                     <tr>
                       <th><span class="block-icon storage"></span>存储:</th>
                       <td>
-                        <div class="block-process yellow-gray">
-                          <div class="block-process yellow" data-bind="style: {'width':Number(storage)/167772.16/600+'%'}">
-                          </div>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                          <span class="unit"></span>
-                        </div>                        </td>
-                      <td class="text-right"><span data-bind="text: storage"></span>GB</td>                       
+                        <img src="img/icon/pra4.png" width="60" height="10">                      
+                      </td>
+                      <td class="text-right"><span data-bind="text: storage || 0"></span>GB</td>                       
                     </tr>
                   </tbody>
                 </table>

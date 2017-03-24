@@ -1,5 +1,6 @@
 myApp.onPageInit("pool-index", function(page) {
 
+
   function ViewModel(){
     var self = this;
     this.hypervisor = ko.observable("");
@@ -27,8 +28,9 @@ myApp.onPageInit("pool-index", function(page) {
       if (self.loading) return;
       self.loading = true;
       if(!is_loadMore) self.page = 1;
+      if(!vdcName) var vdcName = "";
 
-      RestServiceJs.query(BASE_URL+"/resPool",{"dcId":CVM_PAD.dcId,"hypervisor":this.hypervisor(), "firstResult":(self.page-1)*PAGE_SIZE,"maxResult":PAGE_SIZE},function(data){
+      RestServiceJs.query(BASE_URL+"/vdc",{"name":vdcName, "firstResult":(self.page-1)*PAGE_SIZE,"maxResult":PAGE_SIZE},function(data){
         self.infos(data);
         self.loading = false;
         if(!is_loadMore){
@@ -40,21 +42,21 @@ myApp.onPageInit("pool-index", function(page) {
           self.dataList.removeAll();
 
           var dataLength
-          if(!data.data){
+          if(!data.vdcs){
             dataLength = 0;
           }else{
-            dataLength = data.data.length;
+            dataLength = data.vdcs.length;
           }
           self.pools_count(dataLength);
           
           self.noMore(false);
-          if(data.data.length < PAGE_SIZE) self.noMore(true);
+          if(data.vdcs.length < PAGE_SIZE) self.noMore(true);
         }
-        for(var i=0; i<data.data.length; i++){       
-          self.dataList.push(data.data[i]);
+        for(var i=0; i<data.vdcs.length; i++){       
+          self.dataList.push(data.vdcs[i]);
         }
         self.page++;
-        if(is_loadMore && (data.data.length < PAGE_SIZE)){
+        if(is_loadMore && (data.vdcs.length < PAGE_SIZE)){
           myApp.detachInfiniteScroll($$(page.container).find('.infinite-scroll'));
           $$(page.container).find('.infinite-scroll-preloader').remove();
           self.noMore(true);

@@ -16,7 +16,7 @@
 
         <script src="js/jquery.min.js"></script>
         <script src="js/knockout.js"></script>
-        <script type="text/javascript" src="js/framework7.min.js"></script>
+        <script type="text/javascript" src="js/framework7.js"></script>
         <script type="text/javascript" src="js/highstock.js"></script>      
 
         <script type="text/javascript" src="request.js"></script>  
@@ -41,7 +41,7 @@
         <div class="panel-overlay"></div>
 
         <!-- Should be a direct child of BODY -->
-        <div class="login-screen modal-in">
+        <div class="login-screen modal-out">
             <!-- Default view-page layout -->
             <div id="view-login" class="view">
                 <div class="pages navbar-fixed"></div>
@@ -64,9 +64,19 @@
                 <div class="page" data-page="LeftPage">
                     <div class="page-content">
                         <div class="sidebar">
-                            <a href="#view-home" class="tab-link active"> <i class="icon sidebar-icon-home"></i></a>
-                            <a href="#view-pool" class="tab-link" onclick="clickPool()"> <i class="icon sidebar-icon-pool"></i></a>
-                            <a href="#view-settings" class="tab-link dashboardlogout"> <i class="icon sidebar-icon-settings"></i></a>
+                            <a class="tab-link" style="height:28px;"></a>
+                            <a href="#view-home" class="tab-link active">
+                                <i class="icon sidebar-icon-home"></i>
+                                首页
+                            </a>
+                            <a href="#view-pool" class="tab-link" onclick="clickPool()">
+                                <i class="icon sidebar-icon-pool"></i>
+                                VDC
+                            </a>
+                            <a href="#view-settings" class="tab-link dashboardlogout">
+                                <i class="icon sidebar-icon-settings"></i>
+                                退出
+                            </a>
                         </div>
                     </div>
                 </div>

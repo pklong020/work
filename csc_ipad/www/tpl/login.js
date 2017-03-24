@@ -11,9 +11,9 @@ myApp.onPageInit("login", function(page) {
     var baseNet = Storage.getItem("baseNet");
     var userInfo = JSON.parse(Storage.getItem("userInfo"));
     var Required = false;
-    this.network = baseNet ? ko.observable(baseNet) : ko.observable("http://10.10.111.204:8095");
-    this.username = userInfo ? ko.observable(userInfo.account) : ko.observable("demo");
-    this.password = userInfo ? ko.observable(userInfo.password) : ko.observable("demo");
+    this.network = baseNet ? ko.observable(baseNet) : ko.observable("");
+    this.username = userInfo ? ko.observable(userInfo.account) : ko.observable("");
+    this.password = userInfo ? ko.observable(userInfo.password) : ko.observable("");
     this.dashboard = null;
     this.login = function(){
       if(this.network()==""){
@@ -35,15 +35,15 @@ myApp.onPageInit("login", function(page) {
         USER_INFO = data;
         Storage.setItem("userInfo",JSON.stringify(data));
         Storage.setItem("cacheTime",new Date().getTime());
-
+        myApp.closeModal(".login-screen.modal-in");
         initPages()
 
-        if(myApp.Login_Again){
-          window.overview_viewModel.loadData();
-          window.overview_viewModel.loadDatacenters();
-          window.overview_viewModel.changeDc('');
+        // if(myApp.Login_Again){
+        //   window.overview_viewModel.loadData();
+        //   window.overview_viewModel.loadDatacenters();
+        //   window.overview_viewModel.changeDc('');
 
-        }
+        // }
 
       }
 
@@ -53,7 +53,7 @@ myApp.onPageInit("login", function(page) {
       }
 
       Storage.setItem("baseNet",this.network());
-      BASE_URL = Storage.getItem("baseNet") + "/pad/v3.0";
+      BASE_URL = Storage.getItem("baseNet") + "/ipad/v1";
       
       checkNetWork(1,function(){
         $.ajax({
