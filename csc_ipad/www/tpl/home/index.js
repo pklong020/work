@@ -128,7 +128,8 @@ function initTotal_x86_chart_home(data){
       },
       plotOptions: {
           pie: {
-              innerSize: '70%',
+              size:120,
+              innerSize: '80%',
               borderWidth:1,
               allowPointSelect: false,
               cursor: 'pointer',
@@ -200,7 +201,8 @@ function initTotal_x86_chart_home(data){
       },
       plotOptions: {
           pie: {
-              innerSize: '70%',
+              size:120,
+              innerSize: '80%',
               borderWidth:1,
               allowPointSelect: false,
               cursor: 'pointer',
@@ -273,7 +275,8 @@ function initTotal_x86_chart_home(data){
     },
     plotOptions: {
         pie: {
-            innerSize: '70%',
+            size:120,
+            innerSize: '80%',
             borderWidth:1,
             allowPointSelect: false,
             cursor: 'pointer',
@@ -348,7 +351,8 @@ function initTotal_power_chart_home(data){
       },
       plotOptions: {
           pie: {
-              innerSize: '70%',
+              size:120,
+              innerSize: '80%',
               borderWidth:1,
               allowPointSelect: false,
               cursor: 'pointer',
@@ -420,7 +424,8 @@ function initTotal_power_chart_home(data){
       },
       plotOptions: {
           pie: {
-              innerSize: '70%',
+              size:120,
+              innerSize: '80%',
               borderWidth:1,
               allowPointSelect: false,
               cursor: 'pointer',
@@ -493,7 +498,8 @@ function initTotal_power_chart_home(data){
     },
     plotOptions: {
         pie: {
-            innerSize: '70%',
+            size:120,
+            innerSize: '80%',
             borderWidth:1,
             allowPointSelect: false,
             cursor: 'pointer',

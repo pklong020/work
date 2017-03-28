@@ -47,10 +47,10 @@ myApp.onPageInit("login", function(page) {
 
       }
 
-      if(this.username().toLowerCase()=="demo"&&this.password().toLowerCase()=="demo"){
-        BASE_URL = "demoapi";
-        return goLogin({"name":"测试用户","id":1,"account":"demo","password":"demo","flag":true,"token":"demo"});
-      }
+      // if(this.username().toLowerCase()=="demo"&&this.password().toLowerCase()=="demo"){
+      //   BASE_URL = "demoapi";
+      //   return goLogin({"name":"测试用户","id":1,"account":"demo","password":"demo","flag":true,"token":"demo"});
+      // }
 
       Storage.setItem("baseNet",this.network());
       BASE_URL = Storage.getItem("baseNet") + "/ipad/v1";
@@ -67,7 +67,11 @@ myApp.onPageInit("login", function(page) {
           dataType: 'json',
           contentType: 'application/json',
           success: function(data){
-            goLogin(data);
+            if(data.flag){
+              goLogin(data);
+            }else{
+              myApp.alert('连接失败！')
+            }
           },  
           error: function(req, status, ex){
             checkNetWork(1,function(){

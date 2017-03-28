@@ -59,15 +59,9 @@ var is_reload = false;
 function initPages(event){
   view_home                     = view_home || myApp.addView("#view-home",            {dynamicNavbar: false,domCache: true,linksView: "#view-home"});
   view_pool                 = view_pool     || myApp.addView("#view-pool",        {dynamicNavbar: false,domCache: true,linksView: "#view-pool"});
- 
-  view_host                     = view_host || myApp.addView("#view-host",            {dynamicNavbar: false,domCache: true,linksView: "#view-host"});
-  view_vm                         = view_vm || myApp.addView("#view-vm",              {dynamicNavbar: false,domCache: true,linksView: "#view-vm"});
 
   view_home.router.load({            url: "tpl/home/index.html",animatePages: false, reload:is_reload});  
   view_pool.router.load({        url: "tpl/pool/index.html",animatePages: false, reload:is_reload});
- 
-  view_host.router.load({            url: "tpl/host/index.html",animatePages: false, reload:is_reload});
-  view_vm.router.load({              url: "tpl/vm/index.html",animatePages: false, reload:is_reload});
 
   myApp.showTab("#view-home");
 
@@ -160,7 +154,7 @@ function clickSetting(){
 }
 
 function reSetAllRequets(){
-  clickedBusness = false;
+  clickedPool = false;
   clickedHost = false;
   clickedVm = false;
   clickedStorage = false;
