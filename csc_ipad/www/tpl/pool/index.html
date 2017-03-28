@@ -44,7 +44,7 @@
           </tbody>
         </table>
         <div class="product-list clearfix" data-bind="foreach: dataList">
-          <a data-bind="attr:{href:'tpl/pool/show.html?id='+uuid+'&belongTab=pool'}">
+          <a data-bind="attr:{href:'tpl/pool/show.html?id='+uuid+'&belongTab=pool'+'&index='+$index()+'&vdcName='+name}">
             <div class="block-product block-pool">
               <div class="block-pool-title" data-bind="text: name"></div>
                 <table class="listtablestyle1">

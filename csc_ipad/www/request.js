@@ -120,9 +120,11 @@ var RestServiceJs = (function() {
             contentType: 'application/json',
             success: function(res){
               if(res.tokenCheck == false){
-                if(thisRequest==1){
-                  backToLogin(res);
-                }
+                requestNUM = 0;
+                backToLogin(res);
+                // if(thisRequest==1){
+                //   backToLogin(res);
+                // }
               }else{
                 requestNUM = 0;
                 callback(res);
@@ -169,9 +171,11 @@ var RestServiceJs = (function() {
           contentType: 'application/json',  
           success: function(res){
             if(res.tokenCheck == false){
-              if(thisRequest==1){
-                backToLogin(res);
-              }
+              requestNUM = 0;
+              backToLogin(res);
+              // if(thisRequest==1){
+              //   backToLogin(res);
+              // }
             }else{
               requestNUM = 0;
               callback(res);
@@ -224,9 +228,11 @@ var RestServiceJs = (function() {
             contentType: 'application/json',  
             success: function(res){
               if(res.tokenCheck == false){
-                if(thisRequest==1){
-                  backToLogin(res);
-                }
+                requestNUM = 0;
+                backToLogin(res);
+                // if(thisRequest==1){
+                //   backToLogin(res);
+                // }
               }else{
                 requestNUM = 0;
                 callback(res);
@@ -276,9 +282,11 @@ var RestServiceJs = (function() {
             contentType: 'application/json',  
             success: function(res){
               if(res.tokenCheck == false){
-                if(thisRequest==1){
-                  backToLogin(res);
-                }
+                requestNUM = 0;
+                backToLogin(res);
+                // if(thisRequest==1){
+                //   backToLogin(res);
+                // }
               }else{
                 requestNUM = 0;
                 callback(res);

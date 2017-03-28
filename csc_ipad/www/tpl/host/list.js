@@ -4,7 +4,7 @@ myApp.onPageInit("host-list", function(page) {
     var self = this;
     this.dataList = ko.observableArray([]);
     this.hypervisor = ko.observable("");
-    this.resPoolId = ko.observable("");
+    this.vdcId = ko.observable("");
     this.belongTab = ko.observable(page.query.belongTab);
 
     this.selectType = ko.observable("");
@@ -12,27 +12,41 @@ myApp.onPageInit("host-list", function(page) {
       "typeId":'',
       "typeName":'全部'
     },{
-      "typeId":1,
+      "typeId":'y',
       "typeName":'虚拟化'
     },{
-      "typeId":2,
+      "typeId":'n',
       "typeName":'非虚拟化'
     }]
     this.selectType.subscribe(function(val){
       self.loadData(false,val);
+    });
+    this.selectAZ = ko.observable("");
+    this.azs = ko.observableArray([{"name":"全部","uuid":''}].concat(window.pool_index_viewModel.dataList()[page.query.index].azs));
+    this.selectAZ.subscribe(function(val){
+      self.loadData(false,'y',val);
     })
 
     this.loading = false;
     this.page = 1;
     this.noMore = ko.observable();
     self.isInit = true;
-    this.loadData = function(is_loadMore, hypervisor, resPoolId){
+    this.loadData = function(is_loadMore, isVirtual, selectAZ){
+      var isVirtualed,selectAZed;
+      if(!!selectAZ){
+        isVirtualed = 'y';
+        selectAZed = selectAZ;
+      }else{
+        isVirtualed = self.selectType();
+        selectAZed = '';
+        self.selectAZ('');
+      }
 
       if (self.loading) return;
       self.loading = true;
       if(!is_loadMore) self.page = 1;
 
-      RestServiceJs.query(BASE_URL+"/vdc/"+page.query.id+"/host",{"firstResult":(self.page-1)*PAGE_SIZE,"maxResult":PAGE_SIZE},function(data){
+      RestServiceJs.query(BASE_URL+"/vdc/"+page.query.id+"/hosts",{"firstResult":(self.page-1)*PAGE_SIZE,"maxResult":PAGE_SIZE,isVirtual:isVirtualed,azUuid:selectAZed},function(data){
         self.loading = false;
         if(!is_loadMore){
           myApp.pullToRefreshDone();
@@ -62,6 +76,10 @@ myApp.onPageInit("host-list", function(page) {
               data.data[i].state='维护';
               data.data[i].stateCss='gray';
               break;
+            default:
+              data.data[i].state='-';
+              data.data[i].stateCss='gray';
+              break;
           }
           self.dataList.push(data.data[i]);
         }
@@ -78,13 +96,13 @@ myApp.onPageInit("host-list", function(page) {
   ko.applyBindings(viewModel, $$(page.container)[0]);
   window.hostList_viewModel = viewModel;
 
-  viewModel.loadData(false,viewModel.hypervisor(),viewModel.resPoolId());
+  viewModel.loadData(false);
 
   $$(page.container).find('.pull-to-refresh-content').on('refresh', function (e) {
-    viewModel.loadData(false,viewModel.hypervisor(),viewModel.resPoolId());
+    viewModel.loadData(false);
   });
   $$(page.container).find('.infinite-scroll').on('infinite', function () {
-    viewModel.loadData(true,viewModel.hypervisor(),viewModel.resPoolId());
+    viewModel.loadData(true,'',viewModel.selectAZ());
   });  
 
 });
