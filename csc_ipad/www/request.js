@@ -12,6 +12,11 @@ function backToLogin(res){
   if(!myApp.isInLoginPage) myApp.addView('#view-login', {dynamicNavbar: false,domCache: true}).router.load({url: 'tpl/login.html',animatePages: false});
   interAlert = false;
   // $$("#assistive").hide();
+  Storage.removeItem("userInfo");
+  USER_INFO.password = '';
+  USER_INFO.token = '';
+  USER_INFO.tokenKey = '';
+  Storage.setItem("userInfo",JSON.stringify(USER_INFO));
   if(res&&res.tokenCheck==false){
     myApp.alert('您的登录已过期，请重新登录！',function(){
       myApp.closeModal('.popup.modal-in');
