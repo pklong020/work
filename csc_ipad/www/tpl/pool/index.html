@@ -82,7 +82,7 @@
                       <td>
                         <img src="img/icon/pra3.png" width="60" height="10">                       
                       </td>
-                      <td class="text-right"><span data-bind="text: (mem/1024).toFixed(2)"></span>GB</td>                       
+                      <td class="text-right"><span data-bind="text: !mem || mem == 0 ? 0 : (mem/1024).toFixed(2)"></span>GB</td>                       
                     </tr>
                     <tr>
                       <th><span class="block-icon storage"></span>存储:</th>
